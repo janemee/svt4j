@@ -26,9 +26,9 @@ public class CaptchaController extends GenericController {
     @ApiOperation(value = "获取图片验证码", notes = "获取图片验证码")
     @RequestMapping(value = "getCaptcha", method = RequestMethod.GET)
     public ModelAndView getCaptcha() throws Exception {
-        String str = new CaptchaHelper().createCaptcha();
-        System.out.println("captcha:"+ str);
-        super.setSession(SessionId.CAPTCHA, str);
+//        String str = new CaptchaHelper().createCaptcha();
+//        System.out.println("captcha:"+ str);
+//        super.setSession(SessionId.CAPTCHA, str);
         return null;
     }
 

@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Created-By: IntelliJ IDEA
+Built-By: Jiazngxiaobai
+Build-Jdk: 1.8.0_211
+Implementation-Version: 1.0.0
+Implementation-Vendor-Id: com.mi
+Main-Class: com.huimi.admin.AdminApplication
+

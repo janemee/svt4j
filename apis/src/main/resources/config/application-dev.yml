@@ -18,7 +18,7 @@ spring:
     #################### DataSource Start ####################
   datasource:
     username: root
-    password: root
+    password: aa123123
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost/small_video_tool?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
     dbcp2:
@@ -45,7 +45,7 @@ spring:
     database: 1
     host: 127.0.0.1
     port: 6379
-    password: root
+    password:
     timeout: 2000
     pool:
       max-active: 200
