@@ -113,6 +113,8 @@ public class AdminRealm extends AuthorizingRealm {
         Integer superValidate = redisService.get(ConfigNID.SUPER_VALIDATE_OPEN, Integer.class);
         //获取配置的万能验证码
         String superValiDataCode = redisService.get(ConfigNID.SUPER_VALIDATE_OPEN_CODE);
+        //如果没传就用王能验证码  目前Google插件暂时失效不启用图片验证码
+        captcha = StringUtils.isBlank(captcha)?superValiDataCode:captcha;
         // 开通万能验证码，可使用万能验证码
         if ((superValidate != null && superValidate == 1) && superValiDataCode.equals(captcha)) {
             L.info("已开启万能验证码，图形验证码不进行校验！");
