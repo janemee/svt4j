@@ -312,4 +312,33 @@ public class StringUtil extends StringUtils {
     }
 
 
+    public static String getMaskToName(String name) {
+        if (StringUtil.isBlank(name)) {
+            return "";
+        } else if (name.length() <= 2) {
+            return name.substring(1) + getMaskStrByLength( 1);
+        } else {
+            return getMaskStr(name,1,1);
+        }
+    }
+
+    public static String getMaskStr(String str, Integer last, Integer first) {
+        if (StringUtil.isBlank(str)) {
+            return "";
+        }
+        StringBuffer sb = new StringBuffer(str.substring(0, last));
+        sb.append(getMaskStrByLength(str.length() - (last + first)));
+        sb.append(str.substring(str.length() - first, str.length()));
+        return sb.toString();
+    }
+
+    public static String getMaskStrByLength(Integer index) {
+        StringBuffer maskStr = new StringBuffer();
+        for (int i = 0; i < index; i++) {
+            maskStr.append("*");
+        }
+        return maskStr.toString();
+    }
+
+
 }

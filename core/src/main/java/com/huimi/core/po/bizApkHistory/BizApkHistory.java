@@ -2,6 +2,8 @@ package com.huimi.core.po.bizApkHistory;
 
 import com.huimi.common.baseMapper.GenericPo;
 import com.huimi.core.constant.EnumConstants;
+import com.huimi.core.util.mask.DataMask2;
+import com.huimi.core.util.mask.DataMaskEnum2;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,6 +32,7 @@ public class BizApkHistory extends GenericPo<Integer> {
      * 文件名称
      */
     @Column(name = "name")
+//    @DataMask2(function = DataMaskEnum2.USERNAME)
     private String name;
 
     /**
