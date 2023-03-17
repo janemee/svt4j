@@ -1,10 +1,10 @@
-package com.huimi.admin.utils;
+package com.huimi.common.utils.mask;
 
 import com.huimi.common.tools.StringUtil;
 
 import java.util.function.Function;
 
-public enum DataMaskEnum2 {
+public enum DataMaskEnum {
 
     /**
      * 名称脱敏
@@ -33,7 +33,7 @@ public enum DataMaskEnum2 {
      */
     private Function<String, String> function;
 
-    DataMaskEnum2(Function<String, String> function) {
+    DataMaskEnum(Function<String, String> function) {
         this.function = function;
     }
 
