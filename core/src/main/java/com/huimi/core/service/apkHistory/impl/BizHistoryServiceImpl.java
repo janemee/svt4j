@@ -3,6 +3,7 @@ package com.huimi.core.service.apkHistory.impl;
 import com.huimi.common.baseMapper.GenericMapper;
 import com.huimi.core.mapper.bizApkHistory.BizApkHistoryMapper;
 import com.huimi.core.po.bizApkHistory.BizApkHistory;
+import com.huimi.core.po.bizApkHistory.BizApkHistoryModel;
 import com.huimi.core.service.apkHistory.BizApkHistoryService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,7 @@ public class BizHistoryServiceImpl implements BizApkHistoryService {
 
 
     @Override
-    public List<BizApkHistory> findByAll() {
+    public List<BizApkHistoryModel> findByAll() {
         return bizApkHistoryMapper.findByAllList();
     }
 

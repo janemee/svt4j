@@ -18,10 +18,9 @@ import javax.persistence.Transient;
  * create by lja on 2020/7/28 17:05
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @ApiModel(description = "文件上传历史记录表")
 @Table(name = "biz_apk_history")
-public class BizApkHistory extends GenericPo<Integer> {
+public class BizApkHistoryModel  {
     public static final String TABLE_NAME = "biz_apk_history";
 
     /**
@@ -54,7 +53,6 @@ public class BizApkHistory extends GenericPo<Integer> {
     /**
      * 备注
      */
-    @DataMask(function = DataMaskEnum.EMAIL)
     @Column(name = "remake")
     private String remake;
 

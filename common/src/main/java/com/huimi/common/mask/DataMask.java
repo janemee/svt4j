@@ -1,4 +1,4 @@
-package com.huimi.common.utils.mask;
+package com.huimi.common.mask;
 
 import com.fasterxml.jackson.annotation.JacksonAnnotationsInside;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

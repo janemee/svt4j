@@ -1,6 +1,7 @@
 package com.huimi.core.service.apkHistory;
 
 import com.huimi.core.po.bizApkHistory.BizApkHistory;
+import com.huimi.core.po.bizApkHistory.BizApkHistoryModel;
 import com.huimi.core.service.base.GenericService;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public interface BizApkHistoryService extends GenericService<Integer, BizApkHist
      *
      * @return
      */
-    List<BizApkHistory> findByAll();
+    List<BizApkHistoryModel> findByAll();
 
 
     /**

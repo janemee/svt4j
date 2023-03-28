@@ -1,36 +1,39 @@
-package com.huimi.core.util.mask;
+package com.huimi.common.mask;
 
 import com.huimi.common.tools.StringUtil;
 
 import java.util.function.Function;
 
-public enum DataMaskEnum2 {
+public enum DataMaskEnum {
+
     /**
      * 名称脱敏
      */
-    USERNAME(s -> StringUtil.getMaskToName(s))
+    USERNAME(s -> MaskUtils.getMaskToName(s))
     ,
     /**
      * Phone sensitive type.
      */
-    PHONE(s -> StringUtil.getMaskStr(s,3,4))
+    PHONE(s -> MaskUtils.getMaskStr(s,3,4))
     ,
     /**
      * Address sensitive type.
      */
-    ADDRESS(s -> StringUtil.getMaskStr(s,3,6))
+    ADDRESS(s -> MaskUtils.getMaskStr(s,3,6))
+
     ,
     /**
      * Address sensitive type.
      */
-    EMAIL(s ->StringUtil.getMaskStr(s,3,6))
+    EMAIL(s ->MaskUtils.getMaskToEmail(s))
     ;
+
     /**
      * 成员变量  是一个接口类型
      */
     private Function<String, String> function;
 
-    DataMaskEnum2(Function<String, String> function) {
+    DataMaskEnum(Function<String, String> function) {
         this.function = function;
     }
 
