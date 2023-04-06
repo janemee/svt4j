@@ -1,14 +1,17 @@
 package com.huimi.admin.controller.apkHistory;
 
+import com.alibaba.fastjson.JSONObject;
 import com.huimi.admin.controller.BaseController;
 import com.huimi.common.entity.ResultEntity;
 import com.huimi.common.entity.dtgrid.DtGrid;
 import com.huimi.common.tools.StringUtil;
+import com.huimi.common.utils.JsonUtils;
 import com.huimi.common.utils.StringUtils;
 import com.huimi.core.constant.ConfigNID;
 import com.huimi.core.constant.EnumConstants;
 import com.huimi.core.exception.BussinessException;
 import com.huimi.core.po.bizApkHistory.BizApkHistory;
+import com.huimi.core.po.bizApkHistory.BizApkHistoryModel;
 import com.huimi.core.service.apkHistory.BizApkHistoryService;
 import com.huimi.core.service.cache.RedisService;
 import org.apache.commons.collections.CollectionUtils;
@@ -19,7 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static com.huimi.common.entity.ResultEntity.fail;
 
@@ -34,8 +39,8 @@ public class BizApkHistoryJsonController extends BaseController {
     @Resource
     private RedisService redisService;
 
-    @ResponseBody
     @RequestMapping("/list")
+    @ResponseBody
     public DtGrid listJson(HttpServletRequest request, int rows, int page) throws Exception {
         Integer pageSize = rows == 0 ? 1 : rows;
         Integer pageNumber = page == 0 ? 1 : page;
@@ -50,9 +55,12 @@ public class BizApkHistoryJsonController extends BaseController {
         dtGrid.setWhereSql(whereSql.toString());
         dtGrid.setSortSql("order by create_time DESC");
         dtGrid = bizApkHistoryService.getDtGridList(dtGrid);
+        dtGrid.getExhibitDatas().forEach(dt -> {
+            Map<String, Object> map = (Map<String, Object>) dt;
+            System.out.println(map.get("name"));
+        });
         return dtGrid;
     }
-
 
     /**
      * 添加文件上传历史
@@ -166,6 +174,5 @@ public class BizApkHistoryJsonController extends BaseController {
 
 
     }
-
 }
 

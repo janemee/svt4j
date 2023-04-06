@@ -2,8 +2,7 @@ package com.huimi.core.po.bizApkHistory;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.huimi.common.baseMapper.GenericPo;
-import com.huimi.common.mask.DataMask;
-import com.huimi.common.mask.DataMaskEnum;
+import com.huimi.common.mask.fastjson.DataMaskEmailSerializer;
 import com.huimi.core.constant.EnumConstants;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -34,8 +33,7 @@ public class BizApkHistory extends GenericPo<Integer> {
      * 文件名称
      */
     @Column(name = "name")
-    @DataMask(function = DataMaskEnum.USERNAME)
-    @JSONField(name = "name")
+    @JSONField(name = "name",serializeUsing = DataMaskEmailSerializer.class)
     @ApiModelProperty(name = "name",value = "姓名")
     private String name;
 
@@ -54,7 +52,7 @@ public class BizApkHistory extends GenericPo<Integer> {
     /**
      * 备注
      */
-    @DataMask(function = DataMaskEnum.EMAIL)
+    @JSONField(name = "name",serializeUsing = DataMaskEmailSerializer.class)
     @Column(name = "remake")
     private String remake;
 

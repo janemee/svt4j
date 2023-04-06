@@ -2,10 +2,13 @@ package com.huimi.admin.controller.apkHistory;
 
 import com.huimi.admin.controller.BaseController;
 import com.huimi.core.po.bizApkHistory.BizApkHistory;
+import com.huimi.core.po.bizApkHistory.BizApkHistoryModel;
 import com.huimi.core.service.apkHistory.BizApkHistoryService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -30,10 +33,14 @@ public class BizApkHistoryController extends BaseController {
     }
 
     @RequestMapping("/update")
+    @ResponseBody
     public ModelAndView update(Integer ids) {
         ModelAndView modelAndView = new ModelAndView();
         BizApkHistory bizApkHistory = bizApkHistoryService.selectByPrimaryKey(ids);
-        modelAndView.addObject("model", bizApkHistory);
+        BizApkHistoryModel model = new BizApkHistoryModel();
+        BeanUtils.copyProperties(bizApkHistory, model);
+//        model= (BizApkHistoryModel) JsonUtils.toObject(JsonUtils.toJson(model),BizApkHistoryModel.class);
+        modelAndView.addObject("model", model);
         modelAndView.setViewName("apkHistory/update");
         return modelAndView;
 

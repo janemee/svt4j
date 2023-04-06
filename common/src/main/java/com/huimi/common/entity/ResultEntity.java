@@ -1,6 +1,11 @@
 package com.huimi.common.entity;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.huimi.common.utils.JsonUtils;
 import lombok.Data;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 通用返回结果对象
@@ -34,9 +39,8 @@ public class ResultEntity<T> {
     private Integer total;
 
 
-
     public Integer getTotal() {
-        if("".equals(total)||total==null){
+        if ("".equals(total) || total == null) {
             return 0;
         }
         return total;
@@ -60,11 +64,11 @@ public class ResultEntity<T> {
         return restResult;
     }
 
-    public static ResultEntity success(String msg,Object data) {
+    public static ResultEntity success(String msg, Object data) {
         ResultEntity restResult = new ResultEntity();
         restResult.code = ResultEntity.SUCCESS;
         restResult.msg = msg;
-        restResult.data = data;
+        restResult.data = getDataObject(data);
         return restResult;
     }
 
@@ -82,5 +86,20 @@ public class ResultEntity<T> {
         return restResult;
     }
 
+    /**
+     * jackJson序列化
+     *
+     * @param obj
+     * @return
+     */
+    public static Object getDataObject(Object obj) {
+        if (obj instanceof List) {
+            return JsonUtils.toGenericObject(JsonUtils.toJson(obj), new TypeReference<List<Object>>() {
+            });
+        }
+        if (obj instanceof Map) {
 
+        }
+        return obj;
+    }
 }

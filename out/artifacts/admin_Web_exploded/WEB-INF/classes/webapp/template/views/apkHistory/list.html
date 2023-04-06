@@ -96,6 +96,9 @@
                             <button class="btn btn-white btn-sm" id="Del">
                                 <i class="fa fa-trash-o"></i>&nbsp;删除
                             </button>
+                            <button class="btn btn-white btn-sm" id="look">
+                                <i class="fa fa-trash-o"></i>&nbsp;查看
+                            </button>
                             <!--<button onclick="cleanCache()" class=" btn btn-white btn-sm">-->
                             <!--<i class="fa fa-refresh"></i>&nbsp;刷新前台缓存-->
                             <!--</button>-->
@@ -125,6 +128,7 @@
         delMsg = "删除后无法找回数据，确定删除吗?",
         lookQrCodeImgUrl = "/s/apkHistory/lookQeCodeImg",
         lookQrCodeImgTitle = "查看下载apk二维码",
+        look ="s/apkHistory/json/getById"
         jqGridId = "#table_jq",
         jqPageId = "#pager_jq",
         dataUrl = "/s/apkHistory/json/list",
@@ -244,6 +248,18 @@
     });
 
     jQuery("#Edit").click(function () {
+        var ids = jQuery(jqGridId).jqGrid('getGridParam', 'selarrrow');
+        if (ids == '') {
+            parent.notifications('error', "请选择一条数据");
+            return false;
+        }
+        if (ids.length > 1) {
+            parent.notifications('error', "只能选择一条数据");
+            return false;
+        }
+        hm_fn_editFun(editTitle, winWidth, winHeight, editUrl, ids, winname)
+    });
+        jQuery("#look").click(function () {
         var ids = jQuery(jqGridId).jqGrid('getGridParam', 'selarrrow');
         if (ids == '') {
             parent.notifications('error', "请选择一条数据");

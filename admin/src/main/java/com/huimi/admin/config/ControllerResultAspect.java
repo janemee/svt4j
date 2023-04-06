@@ -33,7 +33,7 @@ import java.net.UnknownHostException;
 @Configuration
 public class ControllerResultAspect {
     // 定义切点Pointcut
-    @Pointcut("execution(* com.huimi.consumer.admin.controller..*Controller.*(..))")
+    @Pointcut("execution(* com.huimi.admin.controller..*Controller.*(..))")
     public void excudeService() {
     }
 
@@ -85,7 +85,7 @@ public class ControllerResultAspect {
                     l.setIp(ip);
                     l.setRequestPath(uri);
                     l.setMethod(method);
-//                    l.setParams(queryString);
+                    l.setParams(queryString);
                     if (null != AdminSessionHelper.getCurrAdmin()) {
                         l.setCreator(AdminSessionHelper.getCurrAdmin().getUsername());
                     }

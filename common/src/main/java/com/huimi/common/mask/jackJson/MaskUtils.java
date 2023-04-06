@@ -1,7 +1,9 @@
-package com.huimi.common.mask;
+package com.huimi.common.mask.jackJson;
 
 
 import org.springframework.util.StringUtils;
+
+import java.util.Objects;
 
 import static com.huimi.common.tools.StringUtil.isBlank;
 
@@ -42,10 +44,14 @@ public class MaskUtils extends StringUtils {
     /**
      * 返回邮箱脱敏串
      *
-     * @param email
+     * @param object
      * @return
      */
-    public static String getMaskToEmail(String email) {
+    public static String getMaskToEmail(Object object) {
+        if (Objects.isNull(object)) {
+            return null;
+        }
+        String email = object.toString();
         int emailFlagIndex = email.lastIndexOf("@");
         if (isBlank(email) || emailFlagIndex < 0) {
             return email;

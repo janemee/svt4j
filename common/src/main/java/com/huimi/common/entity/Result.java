@@ -10,6 +10,6 @@ public class Result<T> {
     private Integer error;
     private String url;
     private String message;
-
+    private Object data;
 
 }

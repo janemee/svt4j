@@ -1,4 +1,4 @@
-package com.huimi.common.mask;
+package com.huimi.common.mask3;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.BeanProperty;
@@ -10,9 +10,13 @@ import com.fasterxml.jackson.databind.ser.ContextualSerializer;
 import java.io.IOException;
 import java.util.Objects;
 
-public class DataMaskingSerializer extends JsonSerializer<String> implements ContextualSerializer {
+public final class DataMaskingSerializer2 extends JsonSerializer<String> implements ContextualSerializer {
 
-    private DataMaskEnum dataMaskEnum2;
+    private DataMaskEnum2 dataMaskEnum2;
+
+    public DataMaskingSerializer2(DataMaskEnum2 function) {
+        dataMaskEnum2 =function;
+    }
 
     @Override
     public void serialize(String value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
@@ -21,7 +25,7 @@ public class DataMaskingSerializer extends JsonSerializer<String> implements Con
 
     @Override
     public JsonSerializer<?> createContextual(SerializerProvider prov, BeanProperty property) throws JsonMappingException {
-        DataMask annotation = property.getAnnotation(DataMask.class);
+        DataMask2 annotation = property.getAnnotation(DataMask2.class);
         if (Objects.nonNull(annotation)&&Objects.equals(String.class, property.getType().getRawClass())) {
             this.dataMaskEnum2 = annotation.function();
             return this;
@@ -30,3 +34,4 @@ public class DataMaskingSerializer extends JsonSerializer<String> implements Con
     }
 
 }
+
