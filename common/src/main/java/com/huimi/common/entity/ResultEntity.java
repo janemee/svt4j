@@ -93,13 +93,13 @@ public class ResultEntity<T> {
      * @return
      */
     public static Object getDataObject(Object obj) {
-        if (obj instanceof List) {
-            return JsonUtils.toGenericObject(JsonUtils.toJson(obj), new TypeReference<List<Object>>() {
-            });
-        }
-        if (obj instanceof Map) {
-
-        }
+//        if (obj instanceof List) {
+//            return JsonUtils.toGenericObject(JsonUtils.toJson(obj), new TypeReference<List<Object>>() {
+//            });
+//        }
+//        if (obj instanceof Map) {
+//
+//        }
         return obj;
     }
 }

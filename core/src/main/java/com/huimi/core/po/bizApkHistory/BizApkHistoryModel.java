@@ -3,43 +3,44 @@ package com.huimi.core.po.bizApkHistory;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.huimi.common.mask.jackJson.DataMask;
 import com.huimi.common.mask.jackJson.DataMaskEnum;
-import lombok.Builder;
 import lombok.Data;
+
+import java.util.Date;
 
 /**
  * create by lja on 2020/7/28 17:05
  * @author Jiazngxiaobai
  */
 @Data
-@Builder
 public class BizApkHistoryModel {
 
     /**
      * 文件名称
      */
     @DataMask(function = DataMaskEnum.USERNAME)
-    @JSONField(name = "name")
-    private String name;
+    @JSONField(name = "user_name")
+    private String userName;
 
 
-    /**
-     * 文件地址
-     */
-    private String dataUrl;
 
+
+    @JSONField(name = "date_time")
+    private Date dateTime;
     /**
      * 备注
      */
     @DataMask(function = DataMaskEnum.EMAIL)
-    @JSONField
+    @JSONField(name = "remake")
     private String remake;
 
+    private  BizApkHistoryModel2 bizApkHistoryModel2;
+    private  BizApkHistoryModel2 bizApkHistoryModel3;
+    private  BizApkHistoryModel2 bizApkHistoryModel4;
     public BizApkHistoryModel() {
     }
 
     public BizApkHistoryModel(String name, String dataUrl, String remake) {
-        this.name = name;
-        this.dataUrl = dataUrl;
+        this.userName = name;
         this.remake = remake;
     }
 }

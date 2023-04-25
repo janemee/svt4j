@@ -39,7 +39,6 @@ public class BizApkHistoryController extends BaseController {
         BizApkHistory bizApkHistory = bizApkHistoryService.selectByPrimaryKey(ids);
         BizApkHistoryModel model = new BizApkHistoryModel();
         BeanUtils.copyProperties(bizApkHistory, model);
-//        model= (BizApkHistoryModel) JsonUtils.toObject(JsonUtils.toJson(model),BizApkHistoryModel.class);
         modelAndView.addObject("model", model);
         modelAndView.setViewName("apkHistory/update");
         return modelAndView;

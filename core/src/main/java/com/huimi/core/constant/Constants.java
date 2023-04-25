@@ -1,5 +1,9 @@
 package com.huimi.core.constant;
 
+import com.alibaba.fastjson.serializer.SerializerFeature;
+
+import static com.alibaba.fastjson.serializer.SerializerFeature.*;
+
 /**
  * 系统常量
  *
@@ -155,7 +159,9 @@ public interface Constants {
     String DEVICE_CHANNEL = "device:channel:";
     String CHANNEL_PREFIX = "channel:device:";
     String TIKTOK_TASK = "tiktok_task";
-    String TIKTOK_LIVE_HOT= "tiktok_live_hot";
+    String TIKTOK_LIVE_HOT = "tiktok_live_hot";
     String TIKTOK_LIVE_CHAT = "tiktok_live_chat";
 
+    public static final SerializerFeature[] SERIALIZER_FEATURES = {UseISO8601DateFormat, WriteNullListAsEmpty,
+            WriteNullBooleanAsFalse, WriteEnumUsingToString, DisableCircularReferenceDetect, SkipTransientField, PrettyFormat, WriteMapNullValue};
 }

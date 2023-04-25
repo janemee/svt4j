@@ -248,10 +248,6 @@ public class StringUtil extends StringUtils {
         return isMatched;
     }
 
-    public static void main(String[] age) {
-        System.out.println(isPwd("121323qq"));
-    }
-
 
     public static String fillTemplet(String template, Map<String, Object> sendData) {
         // 模板中的'是非法字符，会导致无法提交，所以页面上用`代替
@@ -355,7 +351,7 @@ public class StringUtil extends StringUtils {
         //兼容非正常邮箱脱敏 例如1@163.com 或 @163.com等
         int handIndex = Math.min(emailFlagIndex, EMAIL_MASK_HANDE);
         int maskIndex = EMAIL_LENGTH - handIndex;
-        String maskSb = String.format("%s%s%s",email.substring(0, handIndex),getMaskStrByLength(maskIndex),email.substring(emailFlagIndex));
+        String maskSb = String.format("%s%s%s", email.substring(0, handIndex), getMaskStrByLength(maskIndex), email.substring(emailFlagIndex));
         return maskSb;
     }
 
@@ -396,4 +392,179 @@ public class StringUtil extends StringUtils {
         return maskStr.toString();
     }
 
+
+    /**
+     * 下划线转驼峰法
+     *
+     * @param line 源字符串
+     * @return 转换后的字符串
+     */
+    public static String underlineToCamel(String line) {
+        if (line == null || "".equals(line)) {
+            return "";
+        }
+        if (line.indexOf("_") == -1) {
+            return line;
+        }
+        StringBuffer sb = new StringBuffer();
+        Pattern pattern = Pattern.compile("([A-Za-z\\d]+)(_)?");
+        Matcher matcher = pattern.matcher(line);
+        while (matcher.find()) {
+            String word = matcher.group();
+            sb.append(matcher.start() == 0 ? Character.toLowerCase(word.charAt(0)) : Character.toUpperCase(word.charAt(0)));
+            int index = word.lastIndexOf('_');
+            if (index > 0) {
+                sb.append(word.substring(1, index).toLowerCase());
+            } else {
+                sb.append(word.substring(1).toLowerCase());
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * 驼峰法转下划线
+     *
+     * @param line 源字符串
+     * @return 转换后的字符串
+     */
+    public static String camelToUnderline(String line) {
+        if (line == null || "".equals(line)) {
+            return "";
+        }
+        line = String.valueOf(line.charAt(0)).toUpperCase().concat(line.substring(1));
+        StringBuffer sb = new StringBuffer();
+        Pattern pattern = Pattern.compile("[A-Z]([a-z\\d]+)?");
+        Matcher matcher = pattern.matcher(line);
+        while (matcher.find()) {
+            String word = matcher.group();
+            sb.append(word.toUpperCase());
+            sb.append(matcher.end() == line.length() ? "" : "_");
+        }
+        return sb.toString();
+    }
+
+    /**
+     * 驼峰式命名法
+     * user_name --> userName
+     */
+    public static String toCamelCase(String s) {
+        if (s == null) {
+            return null;
+        }
+        if (s.indexOf("_") == -1) {
+            return s;
+        }
+        s = s.toLowerCase();
+        StringBuilder sb = new StringBuilder(s.length());
+        boolean upperCase = false;
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+
+            if (c == '_') {
+                upperCase = true;
+            } else if (upperCase) {
+                sb.append(Character.toUpperCase(c));
+                upperCase = false;
+            } else {
+                sb.append(c);
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * 将下划线大写方式命名的字符串转换为驼峰式。如果转换前的下划线大写方式命名的字符串为空，则返回空字符串
+     * HELLO_WORLD --> HelloWorld
+     *
+     * @param name 转换前的下划线大写方式命名的字符串
+     * @return 转换后的驼峰式命名的字符串
+     */
+    public static String convertToCamelCase(String name) {
+        StringBuilder result = new StringBuilder();
+        // 快速检查
+        if (name == null || name.isEmpty()) {
+            // 没必要转换
+            return "";
+        } else if (!name.contains("_")) {
+            // 不含下划线，仅将首字母大写
+            return name.substring(0, 1).toUpperCase() + name.substring(1);
+        }
+        // 用下划线将原始字符串分割
+        String[] camels = name.split("_");
+        for (String camel : camels) {
+            // 跳过原始字符串中开头、结尾的下换线或双重下划线
+            if (camel.isEmpty()) {
+                continue;
+            }
+            // 首字母大写
+            result.append(camel.substring(0, 1).toUpperCase());
+            result.append(camel.substring(1).toLowerCase());
+        }
+        return result.toString();
+    }
+
+    /**
+     * 驼峰转下划线
+     * HelloWorld --> hello_world
+     */
+    public static String toUnderScoreCase(String str) {
+        if (str == null) {
+            return null;
+        }
+        StringBuilder sb = new StringBuilder();
+        // 前置字符是否大写
+        boolean preCharIsUpperCase = true;
+        // 当前字符是否大写
+        boolean curreCharIsUpperCase = true;
+        // 下一字符是否大写
+        boolean nexteCharIsUpperCase = true;
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            if (i > 0) {
+                preCharIsUpperCase = Character.isUpperCase(str.charAt(i - 1));
+            } else {
+                preCharIsUpperCase = false;
+            }
+
+            curreCharIsUpperCase = Character.isUpperCase(c);
+
+            if (i < (str.length() - 1)) {
+                nexteCharIsUpperCase = Character.isUpperCase(str.charAt(i + 1));
+            }
+
+            if (preCharIsUpperCase && curreCharIsUpperCase && !nexteCharIsUpperCase) {
+                sb.append("_");
+            } else if ((i != 0 && !preCharIsUpperCase) && curreCharIsUpperCase) {
+                sb.append("_");
+            }
+            sb.append(Character.toLowerCase(c));
+        }
+
+        return sb.toString();
+    }
+
+
+    public static String StrToCamelCase(String str) {
+        if (StringUtil.isBlank(str) || str.indexOf("_") == -1) {
+            return str;
+        }
+        String[] strings = str.split("_");
+        StringBuffer sb = new StringBuffer(strings[0]);
+        for (int i = 1; i < strings.length; i++) {
+            String thisStr = strings[i];
+            sb.append(thisStr.substring(0, 1).toUpperCase());
+            sb.append(thisStr.substring(1));
+        }
+        return sb.toString();
+    }
+
+    public static void main(String[] age) {
+//        String content = "hhhDddd";
+        String unContent = "hhh_DDDddd";
+//        System.out.println(camelToUnderline(content));
+//        System.out.println(underlineToCamel(unContent));
+//        System.out.println(toCamelCase(unContent));
+        System.out.println(StrToCamelCase(unContent));
+    }
 }

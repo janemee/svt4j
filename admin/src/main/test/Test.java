@@ -9,9 +9,9 @@ public class Test {
     @org.junit.Test
     public void testMask(){
         List<BizApkHistoryModel> bizApkHistoryModels = new ArrayList<>();
-        bizApkHistoryModels.add(BizApkHistoryModel.builder().name("111111").dataUrl("12314@123.com").remake("123123123@123.com").build());
-        bizApkHistoryModels.add(BizApkHistoryModel.builder().name("111111").dataUrl("12314@123.com").remake("123123123@123.com").build());
-        bizApkHistoryModels.add(BizApkHistoryModel.builder().name("111111").dataUrl("12314@123.com").remake("123123123@123.com").build());
+//        bizApkHistoryModels.add(BizApkHistoryModel.builder().name("111111").dataUrl("12314@123.com").remake("123123123@123.com").build());
+//        bizApkHistoryModels.add(BizApkHistoryModel.builder().name("111111").dataUrl("12314@123.com").remake("123123123@123.com").build());
+//        bizApkHistoryModels.add(BizApkHistoryModel.builder().name("111111").dataUrl("12314@123.com").remake("123123123@123.com").build());
         System.out.println("oldOnject：" + bizApkHistoryModels);
         System.out.println("JsonUtils.toJson(list)：" + JsonUtils.toJson(bizApkHistoryModels));
         System.out.println("JsonUtils.toJson(list) to object：" + JsonUtils.toObject(JsonUtils.toJson(bizApkHistoryModels), BizApkHistoryModel.class));

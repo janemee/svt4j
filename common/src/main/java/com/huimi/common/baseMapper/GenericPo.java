@@ -1,7 +1,6 @@
 package com.huimi.common.baseMapper;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,14 +31,14 @@ public abstract class GenericPo<PK> implements Serializable, Cloneable {
     @Getter
     @Setter
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+//    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     /* "createTime" -> 创建时间 */
     protected Date createTime;
 
     @Getter
     @Setter
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+//    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     /* "updateTime" -> 更新时间 */
     protected Date updateTime;
 
