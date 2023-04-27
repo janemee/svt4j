@@ -14,7 +14,7 @@ import java.util.List;
  * @author Jiazngxiaobai
  */
 @Data
-public class BizApkHistoryModel2 {
+public class BizApkHistoryModel3 {
 
     /**
      * 文件名称
@@ -30,14 +30,14 @@ public class BizApkHistoryModel2 {
     @JSONField(name = "email")
     private String email;
 
-    private BizApkHistoryModel3 bizApkHistoryModel3;
+    private BizApkHistoryModel4 bizApkHistoryModel4;
 
-    private List<BizApkHistoryModel3> list;
+    private List<BizApkHistoryModel4> list;
 
-    public BizApkHistoryModel2() {
+    public BizApkHistoryModel3() {
     }
 
-    public BizApkHistoryModel2(String name, String email) {
+    public BizApkHistoryModel3(String name, String email) {
         this.name = name;
         this.email = email;
     }

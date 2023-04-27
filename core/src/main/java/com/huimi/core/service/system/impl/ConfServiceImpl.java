@@ -52,4 +52,17 @@ public class ConfServiceImpl implements ConfService {
     public Integer updateConfByNid(String customer_qrcode_img, String url) {
         return confMapper.updateConfByNid(customer_qrcode_img, url);
     }
+
+    @Override
+    public String getConfigByKey(String key) {
+        try {
+            Conf conf = new Conf();
+            conf.setNid(key);
+            conf = confMapper.selectOne(conf);
+            return conf.getValue();
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
 }

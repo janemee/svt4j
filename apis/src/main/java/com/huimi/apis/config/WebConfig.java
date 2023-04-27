@@ -5,6 +5,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4;
+import com.huimi.common.mask.fastjson.DataMaskEmailSerializer;
 import com.huimi.common.tools.StringUtil;
 import com.huimi.core.constant.Constants;
 import com.huimi.core.service.cache.RedisService;
@@ -68,23 +69,23 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 //        return converter;
 //    }
 
-    @Bean
-    public HttpMessageConverter valueFilter2() {
-        // 1.定义一个converters转换消息的对象
-        FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
-        // 2.添加fastjson的配置信息，比如: 是否需要格式化返回的json数据
-        FastJsonConfig fastJsonConfig = new FastJsonConfig();
-        fastJsonConfig.setSerializerFeatures(PrettyFormat, WriteMapNullValue);
-        //添加自己写的拦截器
-        fastJsonConfig.setSerializeFilters(new ValueMaskFilter(redisService));
-        // 3.在converter中添加配置信息
-        fastConverter.setFastJsonConfig(fastJsonConfig);
-//        fastJsonConfig.getSerializeConfig().put(Date.class,ForceDateCodec.INSTANCE);
-        // 4.将converter赋值给HttpMessageConverter
-        HttpMessageConverter<?> converter = fastConverter;
-        // 5.返回HttpMessageConverters对象
-        return converter;
-    }
+//    @Bean
+//    public HttpMessageConverter valueFilter2() {
+//        // 1.定义一个converters转换消息的对象
+//        FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
+//        // 2.添加fastjson的配置信息，比如: 是否需要格式化返回的json数据
+//        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+//        fastJsonConfig.setSerializerFeatures(PrettyFormat, WriteMapNullValue);
+//        //添加自己写的拦截器
+//        fastJsonConfig.setSerializeFilters(new ValueMaskFilter(redisService));
+//        // 3.在converter中添加配置信息
+//        fastConverter.setFastJsonConfig(fastJsonConfig);
+////        fastJsonConfig.getSerializeConfig().put(Date.class,ForceDateCodec.INSTANCE);
+//        // 4.将converter赋值给HttpMessageConverter
+//        HttpMessageConverter<?> converter = fastConverter;
+//        // 5.返回HttpMessageConverters对象
+//        return converter;
+//    }
 
 
     @Override
@@ -160,8 +161,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         final FastJsonConfig config = new FastJsonConfig();
         config.setCharset(defaultCharset);
         config.setSerializerFeatures(Constants.SERIALIZER_FEATURES);
+        config.getSerializeConfig().put(Object.class, DataMaskEmailSerializer.DATA_MASK_EMAIL_SERIALIZER);
         config.getSerializeConfig().put(Date.class, ForceDateCodec.INSTANCE);
-        config.setSerializeFilters(new ValueMaskFilter());
+//        config.setSerializeFilters(new ValueMaskFilter());
+        System.out.println(config.getSerializeConfig().get(String.class));
         fastJsonHttpMessageConverter4.setFastJsonConfig(config);
         converters.add(fastJsonHttpMessageConverter4);
         super.configureMessageConverters(converters);

@@ -3,7 +3,6 @@ package com.huimi.core.po.bizApkHistory;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.huimi.common.mask.jackJson.DataMask;
 import com.huimi.common.mask.jackJson.DataMaskEnum;
-import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
  * @author Jiazngxiaobai
  */
 @Data
-public class BizApkHistoryModel2 {
+public class BizApkHistoryModel4 {
 
     /**
      * 文件名称
@@ -30,14 +29,12 @@ public class BizApkHistoryModel2 {
     @JSONField(name = "email")
     private String email;
 
-    private BizApkHistoryModel3 bizApkHistoryModel3;
-
     private List<BizApkHistoryModel3> list;
 
-    public BizApkHistoryModel2() {
+    public BizApkHistoryModel4() {
     }
 
-    public BizApkHistoryModel2(String name, String email) {
+    public BizApkHistoryModel4(String name, String email) {
         this.name = name;
         this.email = email;
     }

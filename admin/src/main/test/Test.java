@@ -16,7 +16,7 @@ public class Test {
         System.out.println("JsonUtils.toJson(list)：" + JsonUtils.toJson(bizApkHistoryModels));
         System.out.println("JsonUtils.toJson(list) to object：" + JsonUtils.toObject(JsonUtils.toJson(bizApkHistoryModels), BizApkHistoryModel.class));
         bizApkHistoryModels.forEach(doc -> {
-            System.out.println("maskName:" + doc.getName() + "-dataurl:" + doc.getDataUrl() + "-remake:" + doc.getRemake());
+//            System.out.println("maskName:" + doc.getName() + "-dataurl:" + doc.getDataUrl() + "-remake:" + doc.getRemake());
         });
     }
 }

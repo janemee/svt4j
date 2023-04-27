@@ -12,6 +12,7 @@ import java.lang.reflect.Type;
  * @author Jiazngxiaobai
  */
 public class DataMaskEmailSerializer implements ObjectSerializer {
+    public final static DataMaskEmailSerializer DATA_MASK_EMAIL_SERIALIZER = new DataMaskEmailSerializer();
 
 
     @Override

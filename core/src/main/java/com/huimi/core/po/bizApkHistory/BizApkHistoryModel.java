@@ -6,6 +6,7 @@ import com.huimi.common.mask.jackJson.DataMaskEnum;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * create by lja on 2020/7/28 17:05
@@ -34,8 +35,8 @@ public class BizApkHistoryModel {
     private String remake;
 
     private  BizApkHistoryModel2 bizApkHistoryModel2;
-    private  BizApkHistoryModel2 bizApkHistoryModel3;
-    private  BizApkHistoryModel2 bizApkHistoryModel4;
+
+    private List<BizApkHistoryModel2> list;
     public BizApkHistoryModel() {
     }
 

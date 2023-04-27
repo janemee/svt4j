@@ -42,6 +42,20 @@ public class MaskUtils extends StringUtils {
     }
 
     /**
+     * 返回用户名脱敏串
+     *
+     * @param phone
+     * @return
+     */
+    public static String getMaskToPhone(String phone) {
+        if (isBlank(phone) || phone.length() == 1) {
+            return phone;
+        }
+        int index = phone.length() >= 11 ? 4 : 0;
+        return getMaskStr(phone, 3, index);
+    }
+
+    /**
      * 返回邮箱脱敏串
      *
      * @param object

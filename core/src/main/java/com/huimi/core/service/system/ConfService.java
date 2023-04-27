@@ -17,4 +17,6 @@ public interface ConfService extends GenericService<Integer, Conf> {
     PageBean<Conf> paginateByData(String search_val, Integer pageNumber, Integer pageSize);
 
     Integer updateConfByNid(String customer_qrcode_img, String url);
+
+    String  getConfigByKey(String key);
 }
