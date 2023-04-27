@@ -1,5 +1,6 @@
 package com.huimi.apis.config;
 
+import cn.hutool.core.collection.CollectionUtil;
 import com.huimi.common.entity.ResultEntity;
 import com.huimi.common.mask.jackJson.DataMask;
 import com.huimi.common.mask.jackJson.DataMaskEnum;
@@ -18,6 +19,7 @@ import javax.annotation.Resource;
 import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Jiazngxiaobai
@@ -63,65 +65,17 @@ public class DataSourceMaskValueAspect extends InterceptorOrder {
 
     public void handleObject(Object resultDate) {
         try {
-//            DataMask dataMask;
             if (resultDate instanceof List) {
                 List<Object> resultList = (List) resultDate;
+                if (CollectionUtil.isEmpty(resultList)) {
+                    return;
+                }
                 for (Object obj : resultList) {
                     handleMaskValue(obj);
-//                    Field[] fields = obj.getClass().getDeclaredFields();
-//                    for (Field field : fields) {
-//                        field.setAccessible(true);
-//                        if (isClass(field.getType())) {
-//                            Object object = field.get(obj);
-//                            log.info("field by class ,name  {} ,type :{} ", field.getName(), field.getType());
-//                            handleObject(object);
-//                        }
-//                        if (String.class != field.getType() || (dataMask = field.getAnnotation(DataMask.class)) == null) {
-//                            continue;
-//                        }
-//                        log.info("field : {}", field.getName());
-//                        //如果属性类型是时间类型，取出属性的值
-//                        String valueStr = (String) field.get(obj);
-//                        DataMaskEnum dataMaskEnum = dataMask.function();
-//                        if (DataMaskEnum.EMAIL == dataMaskEnum) {
-//                            field.set(obj, MaskUtils.getMaskToEmail(valueStr));
-//                        }
-//                        if (DataMaskEnum.USERNAME == dataMaskEnum) {
-//                            field.set(obj, MaskUtils.getMaskToName(valueStr));
-//                        }
-//                        if (DataMaskEnum.PHONE == dataMaskEnum) {
-//                            field.set(obj, MaskUtils.getMaskToPhone(valueStr));
-//                        }
-//                    }
                 }
             } else {
                 //处理单个对象情况
                 handleMaskValue(resultDate);
-//                Field[] fields = resultDate.getClass().getDeclaredFields();
-//                for (Field field : fields) {
-//                    field.setAccessible(true);
-//                    if (isClass(field.getType())) {
-//                        Object object = field.get(resultDate);
-//                        log.info("field by class ,name  {} ,type :{} ", field.getName(), field.getType());
-//                        handleObject(object);
-//                    }
-//                    if (String.class != field.getType() || (dataMask = field.getAnnotation(DataMask.class)) == null) {
-//                        continue;
-//                    }
-//                    log.info("field : {}", field.getName());
-//                    //如果属性类型是时间类型，取出属性的值
-//                    String valueStr = (String) field.get(resultDate);
-//                    DataMaskEnum dataMaskEnum = dataMask.function();
-//                    if (DataMaskEnum.EMAIL == dataMaskEnum) {
-//                        field.set(resultDate, MaskUtils.getMaskToEmail(valueStr));
-//                    }
-//                    if (DataMaskEnum.USERNAME == dataMaskEnum) {
-//                        field.set(resultDate, MaskUtils.getMaskToName(valueStr));
-//                    }
-//                    if (DataMaskEnum.PHONE == dataMaskEnum) {
-//                        field.set(resultDate, MaskUtils.getMaskToPhone(valueStr));
-//                    }
-//                }
             }
         } catch (Exception e) {
             log.error("data mask value error msg : {}", e.getMessage());
@@ -138,6 +92,9 @@ public class DataSourceMaskValueAspect extends InterceptorOrder {
     public void handleMaskValue(Object obj) {
         try {
             DataMask dataMask;
+            if(Objects.isNull(obj)){
+                return;
+            }
             Field[] fields = obj.getClass().getDeclaredFields();
             for (Field field : fields) {
                 field.setAccessible(true);
@@ -152,6 +109,9 @@ public class DataSourceMaskValueAspect extends InterceptorOrder {
                 }
                 //如果属性类型是时间类型，取出属性的值
                 String valueStr = (String) field.get(obj);
+                if (StringUtil.isBlank(valueStr)) {
+                    continue;
+                }
                 DataMaskEnum dataMaskEnum = dataMask.function();
                 if (DataMaskEnum.EMAIL == dataMaskEnum) {
                     field.set(obj, MaskUtils.getMaskToEmail(valueStr));
