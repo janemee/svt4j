@@ -17,6 +17,6 @@ public class DataMaskEmailSerializer implements ObjectSerializer {
 
     @Override
     public void write(JSONSerializer jsonSerializer, Object o, Object o1, Type type, int i) throws IOException {
-        jsonSerializer.write(MaskUtils.getMaskToEmail(o));
+//        jsonSerializer.write(MaskUtils.getMaskToEmail(o));
     }
 }

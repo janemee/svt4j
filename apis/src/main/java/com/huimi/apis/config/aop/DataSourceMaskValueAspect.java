@@ -1,6 +1,7 @@
-package com.huimi.apis.config;
+package com.huimi.apis.config.aop;
 
 import cn.hutool.core.collection.CollectionUtil;
+import com.huimi.apis.config.InterceptorOrder;
 import com.huimi.common.entity.ResultEntity;
 import com.huimi.common.mask.jackJson.DataMask;
 import com.huimi.common.mask.jackJson.DataMaskEnum;
@@ -9,6 +10,7 @@ import com.huimi.common.tools.StringUtil;
 import com.huimi.core.service.cache.RedisService;
 import com.huimi.core.service.system.ConfService;
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -28,10 +31,14 @@ import java.util.Objects;
 @Component
 @Slf4j
 public class DataSourceMaskValueAspect extends InterceptorOrder {
-    @Autowired
+    @Resource
     private RedisService redisService;
     @Resource
     private ConfService confService;
+
+    public static final List<String> apiList = Arrays.asList(
+            "activeOverTask"
+    );
 
 
     @Pointcut(value = "@annotation(org.springframework.web.bind.annotation.RequestMapping)")
@@ -39,16 +46,18 @@ public class DataSourceMaskValueAspect extends InterceptorOrder {
 
     }
 
+
     /**
      * 后置处理返回参数
      */
     @AfterReturning(value = "dataSourceMaskValuePointCut()", returning = "result")
-    public void after(Object result) {
+    public void after(JoinPoint joinPoint, Object result) {
         //脱敏开关
         String maskFlag = confService.getConfigByKey("data_mask_flag");
-        if (StringUtil.isBlank(maskFlag) || "false".equals(maskFlag)) {
+        if (StringUtil.isBlank(maskFlag) || "false".equals(maskFlag) || !handleCheckedApi(joinPoint)) {
             return;
         }
+
         try {
             if (result instanceof ResultEntity) {
                 ResultEntity resultEntity = (ResultEntity) result;
@@ -58,8 +67,6 @@ public class DataSourceMaskValueAspect extends InterceptorOrder {
         } catch (Exception e) {
             e.printStackTrace();
             log.info("spring  aop mask value error msg :{}", e.getMessage());
-        } finally {
-            log.info("spring  aop mask value");
         }
     }
 
@@ -92,7 +99,8 @@ public class DataSourceMaskValueAspect extends InterceptorOrder {
     public void handleMaskValue(Object obj) {
         try {
             DataMask dataMask;
-            if(Objects.isNull(obj)){
+            //null 或者 枚举时跳过 否则递归时 内存溢出
+            if (Objects.isNull(obj) || obj instanceof Enum) {
                 return;
             }
             Field[] fields = obj.getClass().getDeclaredFields();
@@ -140,5 +148,19 @@ public class DataSourceMaskValueAspect extends InterceptorOrder {
             return false;
         }
         return true;
+    }
+
+    /**
+     * 判断当前接口是否需要脱敏处理
+     *
+     * @param joinPoint
+     * @return
+     */
+    public boolean handleCheckedApi(JoinPoint joinPoint) {
+        String api = joinPoint.getSignature().getName();
+        if (apiList.contains(api)) {
+            return true;
+        }
+        return false;
     }
 }

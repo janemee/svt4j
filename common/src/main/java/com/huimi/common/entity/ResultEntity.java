@@ -38,6 +38,14 @@ public class ResultEntity<T> {
     private String uuid;
     private Integer total;
 
+    public ResultEntity() {
+    }
+
+    public ResultEntity(T body, String s) {
+        this.data= body;
+        this.msg =s;
+    }
+
 
     public Integer getTotal() {
         if ("".equals(total) || total == null) {
@@ -61,6 +69,14 @@ public class ResultEntity<T> {
         ResultEntity restResult = new ResultEntity();
         restResult.code = ResultEntity.SUCCESS;
         restResult.msg = msg;
+        return restResult;
+    }
+
+    public static ResultEntity success( Object data) {
+        ResultEntity restResult = new ResultEntity();
+        restResult.code = ResultEntity.SUCCESS;
+        restResult.msg = "success";
+        restResult.data = getDataObject(data);
         return restResult;
     }
 

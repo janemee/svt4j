@@ -12,4 +12,10 @@ public class Result<T> {
     private String message;
     private Object data;
 
+    public Result() {
+    }
+
+    public Result(Object data) {
+        this.data = data;
+    }
 }
