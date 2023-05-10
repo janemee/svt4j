@@ -1,20 +1,19 @@
 package com.huimi.apis.config.aop;
 
 import cn.hutool.core.collection.CollectionUtil;
+import com.alibaba.fastjson.JSON;
 import com.huimi.apis.config.InterceptorOrder;
 import com.huimi.common.entity.ResultEntity;
 import com.huimi.common.mask.jackJson.DataMask;
 import com.huimi.common.mask.jackJson.DataMaskEnum;
 import com.huimi.common.mask.jackJson.MaskUtils;
 import com.huimi.common.tools.StringUtil;
-import com.huimi.core.service.cache.RedisService;
 import com.huimi.core.service.system.ConfService;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -32,32 +31,32 @@ import java.util.Objects;
 @Slf4j
 public class DataSourceMaskValueAspect extends InterceptorOrder {
     @Resource
-    private RedisService redisService;
-    @Resource
     private ConfService confService;
 
     public static final List<String> apiList = Arrays.asList(
-            "activeOverTask"
+            "activeOverTask", "testResultToOneObject", "testResult"
     );
 
 
     @Pointcut(value = "@annotation(org.springframework.web.bind.annotation.RequestMapping)")
     public void dataSourceMaskValuePointCut() {
-
     }
 
+    @Pointcut("execution(* com.huimi.apis.controller..*Controller.*(..))")
+    public void dataSourceMaskValuePointCutRest() {
+    }
 
     /**
      * 后置处理返回参数
      */
-    @AfterReturning(value = "dataSourceMaskValuePointCut()", returning = "result")
-    public void after(JoinPoint joinPoint, Object result) {
+    @AfterReturning(value = "dataSourceMaskValuePointCutRest()", returning = "result")
+    public Object after(JoinPoint joinPoint, Object result) throws Throwable {
+        log.info("result :{}", JSON.toJSONString(result));
         //脱敏开关
         String maskFlag = confService.getConfigByKey("data_mask_flag");
         if (StringUtil.isBlank(maskFlag) || "false".equals(maskFlag) || !handleCheckedApi(joinPoint)) {
-            return;
+            return joinPoint.getThis();
         }
-
         try {
             if (result instanceof ResultEntity) {
                 ResultEntity resultEntity = (ResultEntity) result;
@@ -67,6 +66,8 @@ public class DataSourceMaskValueAspect extends InterceptorOrder {
         } catch (Exception e) {
             e.printStackTrace();
             log.info("spring  aop mask value error msg :{}", e.getMessage());
+        }finally {
+            return joinPoint.getThis();
         }
     }
 

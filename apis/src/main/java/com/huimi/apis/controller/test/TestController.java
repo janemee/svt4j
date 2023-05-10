@@ -1,6 +1,7 @@
 package com.huimi.apis.controller.test;
 
 import com.huimi.apis.controller.WebGenericController;
+import com.huimi.common.entity.PageResult;
 import com.huimi.common.entity.Result;
 import com.huimi.common.entity.ResultEntity;
 import com.huimi.core.po.bizApkHistory.BizApkHistoryModel;
@@ -16,10 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 @RestController
@@ -39,11 +37,18 @@ public class TestController extends WebGenericController<Integer, Task> {
     @RequestMapping("/activeOverTask")
     public ResultEntity<Object> activeOverTask(@RequestParam(value = "device_id", required = false) String deviceUid) {
         try {
+            Map<String,Integer> map = new HashMap<>();
+            map.put("1",1);
+            map.put("2",1);
+            map.put("3",1);
             List<BizApkHistoryModel> bizApkHistoryModels = new ArrayList<>();
             BizApkHistoryModel bizApkHistoryModel = new BizApkHistoryModel();
             bizApkHistoryModel.setUserName("123123");
             bizApkHistoryModel.setRemake("1231231");
             bizApkHistoryModel.setDateTime(new Date());
+            bizApkHistoryModel.setIntegerList(Arrays.asList(1,1));
+            bizApkHistoryModel.setNumber(1);
+            bizApkHistoryModel.setMap(map);
 
             BizApkHistoryModel2 bizApkHistoryModel2 = new BizApkHistoryModel2();
             bizApkHistoryModel2.setName("123123");
@@ -120,8 +125,9 @@ public class TestController extends WebGenericController<Integer, Task> {
     }
     @ApiOperation(value = "测试返回单个对象")
     @RequestMapping("/test_result")
-    public ResultEntity testResult() {
+    public ResultEntity<ResultEntity<BizApkHistoryModel>> testResult() {
         try {
+            List list = new ArrayList();
             BizApkHistoryModel bizApkHistoryModel = new BizApkHistoryModel();
             bizApkHistoryModel.setUserName("123123");
             bizApkHistoryModel.setRemake("1231231");
@@ -150,7 +156,11 @@ public class TestController extends WebGenericController<Integer, Task> {
             bizApkHistoryModel.setBizApkHistoryModel2(bizApkHistoryModel2);
             bizApkHistoryModel.setList(Arrays.asList(bizApkHistoryModel2));
 
-            return new ResultEntity(new Result<>(),"");
+            list.add(bizApkHistoryModel);
+            PageResult pageResult = new PageResult();
+            pageResult.setList(list);
+            pageResult.setAmount(10L);
+            return new ResultEntity(pageResult,"");
         } catch (Exception e) {
             e.printStackTrace();
             log.error(e.getMessage());

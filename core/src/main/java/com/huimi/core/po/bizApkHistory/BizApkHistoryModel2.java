@@ -20,14 +20,14 @@ public class BizApkHistoryModel2 {
      * 文件名称
      */
     @DataMask(function = DataMaskEnum.USERNAME)
-    @JSONField(name = "name")
+    @JSONField(name = "user_name")
     private String name;
 
     /**
      * 备注
      */
     @DataMask(function = DataMaskEnum.EMAIL)
-    @JSONField(name = "email")
+    @JSONField(name = "user_email")
     private String email;
 
     private BizApkHistoryModel3 bizApkHistoryModel3;

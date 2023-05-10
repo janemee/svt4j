@@ -7,9 +7,11 @@ import lombok.Data;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * create by lja on 2020/7/28 17:05
+ *
  * @author Jiazngxiaobai
  */
 @Data
@@ -23,8 +25,6 @@ public class BizApkHistoryModel {
     private String userName;
 
 
-
-
     @JSONField(name = "date_time")
     private Date dateTime;
     /**
@@ -34,9 +34,16 @@ public class BizApkHistoryModel {
     @JSONField(name = "remake")
     private String remake;
 
-    private  BizApkHistoryModel2 bizApkHistoryModel2;
+    private BizApkHistoryModel2 bizApkHistoryModel2;
 
     private List<BizApkHistoryModel2> list;
+
+    private List<Integer> integerList;
+
+    private Map<String, Integer> map;
+
+    private int number;
+
     public BizApkHistoryModel() {
     }
 
