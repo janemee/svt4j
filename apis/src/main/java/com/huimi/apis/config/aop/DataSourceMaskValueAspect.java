@@ -2,6 +2,7 @@ package com.huimi.apis.config.aop;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Lists;
 import com.huimi.apis.config.InterceptorOrder;
 import com.huimi.common.entity.ResultEntity;
 import com.huimi.common.mask.jackJson.DataMask;
@@ -18,10 +19,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @author Jiazngxiaobai
@@ -34,7 +32,7 @@ public class DataSourceMaskValueAspect extends InterceptorOrder {
     private ConfService confService;
 
     public static final List<String> apiList = Arrays.asList(
-            "activeOverTask", "testResultToOneObject", "testResult"
+            "TestController.activeOverTask", "TestController.testResultToOneObject", "TestController.testResult"
     );
 
 
@@ -52,6 +50,7 @@ public class DataSourceMaskValueAspect extends InterceptorOrder {
     @AfterReturning(value = "dataSourceMaskValuePointCutRest()", returning = "result")
     public Object after(JoinPoint joinPoint, Object result) throws Throwable {
         log.info("result :{}", JSON.toJSONString(result));
+        joinPoint.getSignature().getDeclaringTypeName();
         //脱敏开关
         String maskFlag = confService.getConfigByKey("data_mask_flag");
         if (StringUtil.isBlank(maskFlag) || "false".equals(maskFlag) || !handleCheckedApi(joinPoint)) {
@@ -66,8 +65,19 @@ public class DataSourceMaskValueAspect extends InterceptorOrder {
         } catch (Exception e) {
             e.printStackTrace();
             log.info("spring  aop mask value error msg :{}", e.getMessage());
-        }finally {
+        } finally {
             return joinPoint.getThis();
+        }
+    }
+
+    public void handleResultEntity(Object result) throws Exception {
+
+        if (result instanceof ResultEntity) {
+            ResultEntity resultEntity = (ResultEntity) result;
+            Object resultDate = resultEntity.getData();
+            handleObject(resultDate);
+        } else {
+            handleObject(result);
         }
     }
 
@@ -81,7 +91,19 @@ public class DataSourceMaskValueAspect extends InterceptorOrder {
                 for (Object obj : resultList) {
                     handleMaskValue(obj);
                 }
+            } else if (resultDate instanceof Map) {
+                Map<Object, Object> objectMap = (Map) resultDate;
+                for (Object key : objectMap.keySet()) {
+                    Object value = objectMap.get(key);
+                    if (value instanceof String) {
+                        String keyStr = key.toString();
+                        objectMap.put(key, getMaskValue(value.toString(), getDataMaskEnum(keyStr)));
+                    } else if (value instanceof Map) {
+                        handleObject(value);
+                    }
+                }
             } else {
+//                log.info(" one of the objects name :" + resultDate);
                 //处理单个对象情况
                 handleMaskValue(resultDate);
             }
@@ -101,15 +123,15 @@ public class DataSourceMaskValueAspect extends InterceptorOrder {
         try {
             DataMask dataMask;
             //null 或者 枚举时跳过 否则递归时 内存溢出
-            if (Objects.isNull(obj) || obj instanceof Enum) {
+            if (Objects.isNull(obj) || isClass(obj)) {
                 return;
             }
             Field[] fields = obj.getClass().getDeclaredFields();
             for (Field field : fields) {
                 field.setAccessible(true);
-                if (isClass(field.getType())) {
+                if (!isClass(field.getType())) {
                     Object object = field.get(obj);
-                    log.info("field by class ,name  {} ,type :{} ", field.getName(), field.getType());
+//                    log.info("field by class ,name  {} ,type :{} ", field.getName(), field.getType());
                     handleObject(object);
                 }
                 log.info("field : {}", field.getName());
@@ -137,18 +159,19 @@ public class DataSourceMaskValueAspect extends InterceptorOrder {
         }
     }
 
+    public static List<Object> ObjectList = Arrays.asList(
+            int.class, float.class, double.class, long.class, short.class,
+            byte.class, boolean.class, char.class, Date.class, java.sql.Date.class);
+
     public boolean isClass(Object clazz) {
-        if (String.class == clazz || Integer.class == clazz
+        if (Integer.class == clazz
                 || Float.class == clazz || Double.class == clazz
                 || Long.class == clazz || Short.class == clazz
                 || Byte.class == clazz || Boolean.class == clazz
-                || Character.class == clazz) {
-            return false;
+                || Character.class == clazz || clazz instanceof Enum) {
+            return true;
         }
-        if (Date.class == clazz || java.sql.Date.class == clazz) {
-            return false;
-        }
-        return true;
+        return ObjectList.contains(clazz);
     }
 
     /**
@@ -158,10 +181,33 @@ public class DataSourceMaskValueAspect extends InterceptorOrder {
      * @return
      */
     public boolean handleCheckedApi(JoinPoint joinPoint) {
-        String api = joinPoint.getSignature().getName();
+        String className = joinPoint.getSignature().getDeclaringTypeName();
+
+        className = className.substring(className.lastIndexOf(".") + 1);
+
+        String api = className + "." + joinPoint.getSignature().getName();
         if (apiList.contains(api)) {
             return true;
         }
         return false;
+    }
+
+    public String getMaskValue(String value, DataMaskEnum dataMaskEnum) {
+        if (Objects.nonNull(dataMaskEnum) && StringUtil.isNotBlank(value)) {
+            switch (dataMaskEnum) {
+                case EMAIL:
+                    return MaskUtils.getMaskToEmail(value);
+            }
+        }
+        return value;
+    }
+
+    public DataMaskEnum getDataMaskEnum(String fieldName) {
+        if (StringUtil.isNotBlank(fieldName)) {
+            if (fieldName.toLowerCase().contains(DataMaskEnum.EMAIL.name().toLowerCase())) {
+                return DataMaskEnum.EMAIL;
+            }
+        }
+        return null;
     }
 }

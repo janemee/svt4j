@@ -1,6 +1,8 @@
 package com.huimi.core.po.bizApkHistory;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.huimi.common.enums.ExchangeEnum;
+import com.huimi.common.enums.LoginEnum;
 import com.huimi.common.mask.jackJson.DataMask;
 import com.huimi.common.mask.jackJson.DataMaskEnum;
 import lombok.Data;
@@ -43,6 +45,10 @@ public class BizApkHistoryModel {
     private Map<String, Integer> map;
 
     private int number;
+
+    private LoginEnum loginEnum;
+
+    private ExchangeEnum exchangeEnum;
 
     public BizApkHistoryModel() {
     }
