@@ -1,7 +1,9 @@
 package com.huimi.core.constant;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -1019,6 +1021,468 @@ public class EnumConstants {
                 map.put(status.code, status.value);
             }
             return map;
+        }
+    }
+
+
+    /**
+     * 应用领域状态
+     */
+    public enum ApplicationStatusEunm {
+        YES(0, "yes", "发布", "<span class=\"label label-primary\">发布</span>"),
+        NO(1, "no", "未发布", "<span class=\"label label-info\">未发布</span>");
+
+
+        public final String code;
+        public final int value;
+        public final String desc;
+        public final String htmlStr;
+        private static Map<String, Integer> map = new HashMap<>();
+
+        ApplicationStatusEunm(int value, String code, String desc, String htmlStr) {
+            this.code = code;
+            this.value = value;
+            this.desc = desc;
+            this.htmlStr = htmlStr;
+        }
+
+        public static int getValue(String code) {
+            if (null == code) {
+                return -1;
+            }
+            for (ApplicationStatusEunm status : ApplicationStatusEunm.values()) {
+                if (status.code.equals(code)) {
+                    return status.value;
+                }
+            }
+            return -1;
+        }
+
+        public static String getCode(int value) {
+            for (ApplicationStatusEunm status : ApplicationStatusEunm.values()) {
+                if (status.value == (value)) {
+                    return status.code;
+                }
+            }
+            return null;
+        }
+
+        public static String getHtmlStr(String code) {
+            if (null == code || "".equals(code)) {
+                return "";
+            }
+            for (ApplicationStatusEunm status : ApplicationStatusEunm.values()) {
+                if (status.code.equals(code)) {
+                    return status.htmlStr;
+                }
+            }
+            return "";
+        }
+
+        public static String getHtmlStr(Integer value) {
+            if (null == value) {
+                return "";
+            }
+            for (ApplicationStatusEunm status : ApplicationStatusEunm.values()) {
+                if (status.value == value.intValue()) {
+                    return status.htmlStr;
+                }
+            }
+            return "";
+        }
+
+
+        public static ApplicationStatusEunm getTaskType(String code) {
+            if (null == code || "".equals(code)) {
+                return null;
+            }
+            for (ApplicationStatusEunm status : ApplicationStatusEunm.values()) {
+                if (status.code.equals(code)) {
+                    return status;
+                }
+            }
+            return null;
+        }
+
+        public static Map<String, Integer> getEnumMap() {
+            for (ApplicationStatusEunm status : ApplicationStatusEunm.values()) {
+                map.put(status.code, status.value);
+            }
+            return map;
+        }
+    }
+
+    /**
+     * 应用领域类型
+     */
+    public enum ApplicationTypeEunm {
+        JINGMI(1, "JM", "精密结构", "<span class=\"label label-primary\">精密结构</span>"),
+        JIAZHI(2, "JZ", "价值优势", "<span class=\"label label-info\">价值优势</span>"),
+        APPLICATION(3, "APP", "应用领域", "<span class=\"label label-info\">应用领域</span>");
+
+
+        public final String code;
+        public final int value;
+        public final String desc;
+        public final String htmlStr;
+        private static Map<String, Integer> map = new HashMap<>();
+
+        ApplicationTypeEunm(int value, String code, String desc, String htmlStr) {
+            this.code = code;
+            this.value = value;
+            this.desc = desc;
+            this.htmlStr = htmlStr;
+        }
+
+        public static int getValue(String code) {
+            if (null == code) {
+                return -1;
+            }
+            for (ApplicationTypeEunm status : ApplicationTypeEunm.values()) {
+                if (status.code.equals(code)) {
+                    return status.value;
+                }
+            }
+            return -1;
+        }
+
+        public static String getCode(int value) {
+            for (ApplicationTypeEunm status : ApplicationTypeEunm.values()) {
+                if (status.value == (value)) {
+                    return status.code;
+                }
+            }
+            return null;
+        }
+
+        public static String getHtmlStr(String code) {
+            if (null == code || "".equals(code)) {
+                return "";
+            }
+            for (ApplicationTypeEunm status : ApplicationTypeEunm.values()) {
+                if (status.code.equals(code)) {
+                    return status.htmlStr;
+                }
+            }
+            return "";
+        }
+
+        public static String getHtmlStr(Integer value) {
+            if (null == value) {
+                return "";
+            }
+            for (ApplicationTypeEunm status : ApplicationTypeEunm.values()) {
+                if (status.value == value.intValue()) {
+                    return status.htmlStr;
+                }
+            }
+            return "";
+        }
+
+
+        public static ApplicationTypeEunm getTaskType(String code) {
+            if (null == code || "".equals(code)) {
+                return null;
+            }
+            for (ApplicationTypeEunm status : ApplicationTypeEunm.values()) {
+                if (status.code.equals(code)) {
+                    return status;
+                }
+            }
+            return null;
+        }
+
+        public static Map<String, Integer> getEnumMap() {
+            for (ApplicationTypeEunm status : ApplicationTypeEunm.values()) {
+                map.put(status.code, status.value);
+            }
+            return map;
+        }
+    }
+
+    /**
+     * 产品详情类型
+     */
+    public enum ProductTypeEunm {
+        JINGMI(1, "JM", "精密结构", "<span class=\"label label-primary\">精密结构</span>"),
+        JIAZHI(2, "JZ", "价值优势", "<span class=\"label label-info\">价值优势</span>"),
+        APPLICATION(3, "APP", "应用领域", "<span class=\"label label-info\">应用领域</span>");
+
+
+        public final String code;
+        public final int value;
+        public final String desc;
+        public final String htmlStr;
+        private static Map<String, Integer> map = new HashMap<>();
+
+        ProductTypeEunm(int value, String code, String desc, String htmlStr) {
+            this.code = code;
+            this.value = value;
+            this.desc = desc;
+            this.htmlStr = htmlStr;
+        }
+
+        public static int getValue(String code) {
+            if (null == code) {
+                return -1;
+            }
+            for (ProductTypeEunm status : ProductTypeEunm.values()) {
+                if (status.code.equals(code)) {
+                    return status.value;
+                }
+            }
+            return -1;
+        }
+
+        public static String getCode(int value) {
+            for (ProductTypeEunm status : ProductTypeEunm.values()) {
+                if (status.value == (value)) {
+                    return status.code;
+                }
+            }
+            return null;
+        }
+
+        public static String getHtmlStr(String code) {
+            if (null == code || "".equals(code)) {
+                return "";
+            }
+            for (ProductTypeEunm status : ProductTypeEunm.values()) {
+                if (status.code.equals(code)) {
+                    return status.htmlStr;
+                }
+            }
+            return "";
+        }
+
+        public static String getHtmlStr(Integer value) {
+            if (null == value) {
+                return "";
+            }
+            for (ProductTypeEunm status : ProductTypeEunm.values()) {
+                if (status.value == value.intValue()) {
+                    return status.htmlStr;
+                }
+            }
+            return "";
+        }
+
+
+        public static ProductTypeEunm getTaskType(String code) {
+            if (null == code || "".equals(code)) {
+                return null;
+            }
+            for (ProductTypeEunm status : ProductTypeEunm.values()) {
+                if (status.code.equals(code)) {
+                    return status;
+                }
+            }
+            return null;
+        }
+
+        public static Map<String, Integer> getEnumMap() {
+            for (ProductTypeEunm status : ProductTypeEunm.values()) {
+                map.put(status.code, status.value);
+            }
+            return map;
+        }
+
+        public static List<EnumDTO> getList(){
+            List<EnumDTO> list = new ArrayList<>();
+            for (ProductTypeEunm status : ProductTypeEunm.values()){
+                list.add(new EnumDTO(status.htmlStr, status.value));
+            }
+            return list;
+        }
+    }
+
+
+    /**
+     * 操作类型
+     */
+    public enum FunctionTypeEunm {
+        SAVE(1, "save", "添加", "<span class=\"label label-primary\">精密结构</span>"),
+        EDIT(2, "edit", "更新", "<span class=\"label label-info\">价值优势</span>"),
+        DEL(3, "del", "删除", "<span class=\"label label-info\">应用领域</span>");
+
+
+        public final String code;
+        public final int value;
+        public final String desc;
+        public final String htmlStr;
+        private static Map<String, Integer> map = new HashMap<>();
+
+        FunctionTypeEunm(int value, String code, String desc, String htmlStr) {
+            this.code = code;
+            this.value = value;
+            this.desc = desc;
+            this.htmlStr = htmlStr;
+        }
+
+        public static int getValue(String code) {
+            if (null == code) {
+                return -1;
+            }
+            for (FunctionTypeEunm status : FunctionTypeEunm.values()) {
+                if (status.code.equals(code)) {
+                    return status.value;
+                }
+            }
+            return -1;
+        }
+
+        public static String getCode(int value) {
+            for (FunctionTypeEunm status : FunctionTypeEunm.values()) {
+                if (status.value == (value)) {
+                    return status.code;
+                }
+            }
+            return null;
+        }
+
+        public static String getHtmlStr(String code) {
+            if (null == code || "".equals(code)) {
+                return "";
+            }
+            for (FunctionTypeEunm status : FunctionTypeEunm.values()) {
+                if (status.code.equals(code)) {
+                    return status.htmlStr;
+                }
+            }
+            return "";
+        }
+
+        public static String getHtmlStr(Integer value) {
+            if (null == value) {
+                return "";
+            }
+            for (FunctionTypeEunm status : FunctionTypeEunm.values()) {
+                if (status.value == value.intValue()) {
+                    return status.htmlStr;
+                }
+            }
+            return "";
+        }
+
+
+        public static FunctionTypeEunm getTaskType(String code) {
+            if (null == code || "".equals(code)) {
+                return null;
+            }
+            for (FunctionTypeEunm status : FunctionTypeEunm.values()) {
+                if (status.code.equals(code)) {
+                    return status;
+                }
+            }
+            return null;
+        }
+
+        public static Map<String, Integer> getEnumMap() {
+            for (FunctionTypeEunm status : FunctionTypeEunm.values()) {
+                map.put(status.code, status.value);
+            }
+            return map;
+        }
+    }
+
+
+
+    /**
+     * 客户留言处理状态
+     * 状态 0：待处理 1：跟进中，2.暂不处理，3.无效
+     */
+    public enum MessageBoardStatusEunm {
+        PROCESSED(0, "PROCESSED", "待处理", "<span class=\"label label-primary\">待处理</span>"),
+        PROCESSING(1, "PROCESSING", "跟进中", "<span class=\"label label-info\">跟进中</span>"),
+        LEAVE_ASIDE(2, "LEAVE_ASIDE", "暂不处理", "<span class=\"label label-info\">暂不处理</span>"),
+        IN_ASIDE(3, "IN_ASIDE", "无效", "<span class=\"label label-info\">无效</span>"),
+        PASS(4, "PASS", "已完成", "<span class=\"label label-info\">已完成</span>");
+
+
+        public final String code;
+        public final int value;
+        public final String desc;
+        public final String htmlStr;
+        private static Map<String, Integer> map = new HashMap<>();
+
+        MessageBoardStatusEunm(int value, String code, String desc, String htmlStr) {
+            this.code = code;
+            this.value = value;
+            this.desc = desc;
+            this.htmlStr = htmlStr;
+        }
+
+        public static int getValue(String code) {
+            if (null == code) {
+                return -1;
+            }
+            for (MessageBoardStatusEunm status : MessageBoardStatusEunm.values()) {
+                if (status.code.equals(code)) {
+                    return status.value;
+                }
+            }
+            return -1;
+        }
+
+        public static String getCode(int value) {
+            for (MessageBoardStatusEunm status : MessageBoardStatusEunm.values()) {
+                if (status.value == (value)) {
+                    return status.code;
+                }
+            }
+            return null;
+        }
+
+        public static String getHtmlStr(String code) {
+            if (null == code || "".equals(code)) {
+                return "";
+            }
+            for (MessageBoardStatusEunm status : MessageBoardStatusEunm.values()) {
+                if (status.code.equals(code)) {
+                    return status.htmlStr;
+                }
+            }
+            return "";
+        }
+
+        public static String getHtmlStr(Integer value) {
+            if (null == value) {
+                return "";
+            }
+            for (MessageBoardStatusEunm status : MessageBoardStatusEunm.values()) {
+                if (status.value == value.intValue()) {
+                    return status.htmlStr;
+                }
+            }
+            return "";
+        }
+
+
+        public static MessageBoardStatusEunm getTaskType(String code) {
+            if (null == code || "".equals(code)) {
+                return null;
+            }
+            for (MessageBoardStatusEunm status : MessageBoardStatusEunm.values()) {
+                if (status.code.equals(code)) {
+                    return status;
+                }
+            }
+            return null;
+        }
+
+        public static Map<String, Integer> getEnumMap() {
+            for (MessageBoardStatusEunm status : MessageBoardStatusEunm.values()) {
+                map.put(status.code, status.value);
+            }
+            return map;
+        }
+
+        public static List<EnumDTO> getList(){
+            List<EnumDTO> list = new ArrayList<>();
+            for (MessageBoardStatusEunm status : MessageBoardStatusEunm.values()){
+                list.add(new EnumDTO(status.htmlStr, status.value));
+            }
+            return list;
         }
     }
 

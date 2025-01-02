@@ -18,23 +18,23 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping(BaseController.BASE_URI)
 public class MqttGetwayController extends BaseController {
-
-
-    /**
-     * 发送mqtt消息
-     */
-    @RequestMapping(value = "/mqtt/send", method = RequestMethod.GET)
-    public ModelAndView mqttSend(HttpServletResponse response) {
-        ModelAndView modelAndView = new ModelAndView();
-        //如果已经登录跳转到首页
-        if (SecurityUtils.getSubject().isAuthenticated()) {
-            modelAndView.setView(new RedirectView("/s/s/main", true, false));
-            return modelAndView;
-        }
-        response.addHeader("ADMIN_LOGIN_STATE", "0");
-        modelAndView.setViewName("login");
-        return modelAndView;
-    }
+//
+//
+//    /**
+//     * 发送mqtt消息
+//     */
+//    @RequestMapping(value = "/mqtt/send", method = RequestMethod.GET)
+//    public ModelAndView mqttSend(HttpServletResponse response) {
+//        ModelAndView modelAndView = new ModelAndView();
+//        //如果已经登录跳转到首页
+//        if (SecurityUtils.getSubject().isAuthenticated()) {
+//            modelAndView.setView(new RedirectView("/s/s/main", true, false));
+//            return modelAndView;
+//        }
+//        response.addHeader("ADMIN_LOGIN_STATE", "0");
+//        modelAndView.setViewName("login");
+//        return modelAndView;
+//    }
 
 
 }

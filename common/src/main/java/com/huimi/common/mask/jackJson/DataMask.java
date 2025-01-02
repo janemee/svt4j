@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 /**
  * @author Jiazngxiaobai
  */
-@Target({ElementType.FIELD, ElementType.TYPE})
+@Target({ElementType.FIELD,ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface DataMask {
     DataMaskEnum function() default DataMaskEnum.EMAIL;

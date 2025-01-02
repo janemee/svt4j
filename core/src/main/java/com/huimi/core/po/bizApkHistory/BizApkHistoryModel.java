@@ -50,6 +50,9 @@ public class BizApkHistoryModel {
 
     private ExchangeEnum exchangeEnum;
 
+    @DataMask
+    private List objectList;
+
     public BizApkHistoryModel() {
     }
 

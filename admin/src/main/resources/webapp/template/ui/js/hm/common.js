@@ -962,7 +962,7 @@ function hm_fn_viewFun(title, width, height, url, id, winname, closeFunc) {
         fix: false, //不固定
         maxmin: true,
         area: [width, height],
-        btn: ['确定', '关闭'],
+        btn: ['关闭'],
         yes: function (index, layero) {
             window.parent[layero.find('iframe')[0]['name']].validateForm();
         },
