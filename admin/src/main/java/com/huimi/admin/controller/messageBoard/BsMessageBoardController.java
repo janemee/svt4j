@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Objects;
+
 /**
  * 客户留言跳转页面控制类
  */
@@ -29,6 +31,11 @@ public class BsMessageBoardController extends BaseController {
     @RequestMapping("/getById")
     public ModelAndView getById(Integer ids) {
         ModelAndView modelAndView = new ModelAndView();
+        if(Objects.isNull(ids)){
+            modelAndView.setViewName("bsMessageBoard/list");
+            return modelAndView;
+        }
+
         BsMessageBoardPo bsMessageBoardPo = bsMessageBoardService.selectByPrimaryKey(ids);
         modelAndView.addObject("model",bsMessageBoardPo);
         modelAndView.setViewName("bsMessageBoard/getById");

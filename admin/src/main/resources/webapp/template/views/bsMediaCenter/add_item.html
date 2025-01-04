@@ -10,8 +10,19 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox-content">
-                <form class="form-horizontal m-t" id="form" action="${cxt!}/s/bsMessageBoard/getById">
-                    <#include "_form.html">
+                <form class="form-horizontal m-t" id="form" action="${cxt!}/s/bsProduct/json/addItem">
+                    <#include "_item_form.html">
+                    <div class="form-group">
+                        <div class="col-sm-6 form-group">
+                            <label class="col-sm-4 control-label">上传文件</label>
+                            <div class="col-sm-8">
+                                <input id="upload" name="file" type="file" class="form-control">
+                                <input id="productImgUrl" name="productImgUrl" style="display: none">
+                                <img id="pic" src="" style="width: 100px;height: 100px">
+                                <span id="msg"></span>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -22,7 +33,7 @@
 <script type="text/javascript" src="${cxt!}/ui/js/hm/apkHistory.js"></script>
 <script type="text/javascript">
     var jqGridId = "#table_jq",
-        dataUrl = "${cxt!}/s/bsMessageBoard/getById",
+        dataUrl = "${cxt!}/s/bsProduct/json/addItem",
         formId = "#form",
         winname = "${winname!}";
     jQuery(document).ready(function () {
@@ -71,7 +82,7 @@
         var pic = $('#upload')[0].files[0];
         file.append('file', pic);
         $.ajax({
-            url: "/s/file/doUploadPic",
+            url: "/s/file/upload",
             type: "post",
             data: file,
             cache: false,
@@ -81,10 +92,9 @@
                 //将回传地址赋给input
                 var res = data;
                 if (data.code == 200) {
-                    console.log(res.data.url)
-                    $("#dataUrl").val(res.data.url);
-                    $("#qrCodeUrl").val(res.data.imgUrl);
-                    $("#pic").attr("src", res.data.imgUrl);
+                    console.log(res.data)
+                    $("#productImgUrl").val(res.data);
+                    $("#pic").attr("src", res.data);
                     // parent.notifications('success', data.msg, "系统提示");
                     $("#msg").text("文件上传成功");
                     //显示二维码

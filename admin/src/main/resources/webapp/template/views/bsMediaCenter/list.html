@@ -18,13 +18,13 @@
                                 <div class="input-group">
                                     <input type="text" name="search_val" placeholder="请输入名称进行搜索"
                                            class="form-control search-input" id="search-input">
-                                    <input type="text" name="product_id" placeholder="父id"
+                                    <input type="text" name="ncColumnsType" placeholder="请输入名称进行搜索"
                                            class="form-control search-input" style="display: none;"
-                                           value="${(product_id)!}">
+                                           value="'name','nid','value'">
                                     <span class="input-group-btn search-span">
                                                 <button class="btn btn-white btn-sm " type="button"
                                                         onclick="dropdownSearchFun(this)"
-                                                        data-url="${cxt!}/s/bsProduct/json/itemList"
+                                                        data-url="${cxt!}/s/bsMediaCenter/json/list"
                                                         data-tid="table_jq"
                                                         id="search-btn"><i class="fa fa-search"></i> 查询</button>
                                             </span>
@@ -33,54 +33,54 @@
                         </div>
                         <#--                        <div class="search-form-adv ml10">-->
                         <#--                            <form>-->
-                        <#--                                <div class="btn-group" onclick="dropdownSelectHoverFun(this)">-->
-                        <#--                                    <button type="button" class="btn btn-white dropdown-select-toggle" data-toggle="#"-->
-                        <#--                                            aria-haspopup="true" aria-expanded="false"> 条件查询 <span class="caret"></span>-->
-                        <#--                                    </button>-->
-                        <#--                                    <ul class="dropdown-menu search-menu">-->
-                        <#--                                        <li class="input-group input-group-sm">-->
-                        <#--                                            <span>标识</span>-->
-                        <#--                                            <input type="text" id="nid" name="nid" class="hm-search-w208">-->
-                        <#--                                        </li>-->
-                        <#--                                        <li class="input-group input-group-sm">-->
-                        <#--                                            <span>名称</span>-->
-                        <#--                                            <input type="text" id="name" name="name" class="hm-search-w208">-->
-                        <#--                                        </li>-->
-                        <#--                                        <li class="input-group input-group-sm">-->
-                        <#--                                            <span>类型</span>-->
-                        <#--                                            <select name="type" class="hm-search-w208">-->
-                        <#--                                                <option value="99" selected="selected">全部</option>-->
-                        <#--                                                <option value="1">系统底层</option>-->
-                        <#--                                                <option value="2">各种费率配</option>-->
-                        <#--                                                <option value="3">邮件/短信</option>-->
-                        <#--                                                <option value="4">附加增值功能</option>-->
-                        <#--                                                <option value="5">第三方资金托管相关</option>-->
-                        <#--                                            </select>-->
-                        <#--                                        </li>-->
-                        <#--                                        <li class="input-group input-group-sm">-->
-                        <#--                                            <span>状态</span>-->
-                        <#--                                            <select name="state" class="hm-search-w208">-->
-                        <#--                                                <option value="99" selected="selected">全部</option>-->
-                        <#--                                                <option value="1">启用</option>-->
-                        <#--                                                <option value="0">禁用</option>-->
-                        <#--                                            </select>-->
-                        <#--                                        </li>-->
-                        <#--                                        <li>-->
-                        <#--                                            <span>&nbsp;</span>-->
-                        <#--                                            <button class="btn btn-white btn-sm" type="button"-->
-                        <#--                                                    onclick="dropdownSearchFun(this)"-->
-                        <#--                                                    data-url="${cxt!}/s/bsProduct/json/itemList"-->
-                        <#--                                                    data-tid="table_jq" id="search-btn"><i class="fa fa-search"></i> 查询-->
-                        <#--                                            </button>-->
-                        <#--                                            <button class="btn btn-white btn-sm" type="button"-->
-                        <#--                                                    onclick="dropdownSearchCleanFun(this)"-->
-                        <#--                                                    data-url="${cxt!}/s/bsProduct/json/itemList"-->
-                        <#--                                                    data-tid="table_jq" id="clear-btn"><i class="fa fa-retweet"></i> 清空-->
-                        <#--                                            </button>-->
-                        <#--                                        </li>-->
-                        <#--                                    </ul>-->
-                        <#--                                </div>-->
-                        <#--                            </form>-->
+                            <#--                                <div class="btn-group" onclick="dropdownSelectHoverFun(this)">-->
+                                <#--                                    <button type="button" class="btn btn-white dropdown-select-toggle" data-toggle="#"-->
+                                    <#--                                            aria-haspopup="true" aria-expanded="false"> 条件查询 <span class="caret"></span>-->
+                                    <#--                                    </button>-->
+                                <#--                                    <ul class="dropdown-menu search-menu">-->
+                                    <#--                                        <li class="input-group input-group-sm">-->
+                                        <#--                                            <span>标识</span>-->
+                                        <#--                                            <input type="text" id="nid" name="nid" class="hm-search-w208">-->
+                                        <#--                                        </li>-->
+                                    <#--                                        <li class="input-group input-group-sm">-->
+                                        <#--                                            <span>名称</span>-->
+                                        <#--                                            <input type="text" id="name" name="name" class="hm-search-w208">-->
+                                        <#--                                        </li>-->
+                                    <#--                                        <li class="input-group input-group-sm">-->
+                                        <#--                                            <span>类型</span>-->
+                                        <#--                                            <select name="type" class="hm-search-w208">-->
+                                            <#--                                                <option value="99" selected="selected">全部</option>-->
+                                            <#--                                                <option value="1">系统底层</option>-->
+                                            <#--                                                <option value="2">各种费率配</option>-->
+                                            <#--                                                <option value="3">邮件/短信</option>-->
+                                            <#--                                                <option value="4">附加增值功能</option>-->
+                                            <#--                                                <option value="5">第三方资金托管相关</option>-->
+                                            <#--                                            </select>-->
+                                        <#--                                        </li>-->
+                                    <#--                                        <li class="input-group input-group-sm">-->
+                                        <#--                                            <span>状态</span>-->
+                                        <#--                                            <select name="state" class="hm-search-w208">-->
+                                            <#--                                                <option value="99" selected="selected">全部</option>-->
+                                            <#--                                                <option value="1">启用</option>-->
+                                            <#--                                                <option value="0">禁用</option>-->
+                                            <#--                                            </select>-->
+                                        <#--                                        </li>-->
+                                    <#--                                        <li>-->
+                                        <#--                                            <span>&nbsp;</span>-->
+                                        <#--                                            <button class="btn btn-white btn-sm" type="button"-->
+                                            <#--                                                    onclick="dropdownSearchFun(this)"-->
+                                            <#--                                                    data-url="${cxt!}/s/bsMediaCenter/json/list"-->
+                                            <#--                                                    data-tid="table_jq" id="search-btn"><i class="fa fa-search"></i> 查询-->
+                                            <#--                                            </button>-->
+                                        <#--                                            <button class="btn btn-white btn-sm" type="button"-->
+                                            <#--                                                    onclick="dropdownSearchCleanFun(this)"-->
+                                            <#--                                                    data-url="${cxt!}/s/bsMediaCenter/json/list"-->
+                                            <#--                                                    data-tid="table_jq" id="clear-btn"><i class="fa fa-retweet"></i> 清空-->
+                                            <#--                                            </button>-->
+                                        <#--                                        </li>-->
+                                    <#--                                    </ul>-->
+                                <#--                                </div>-->
+                            <#--                            </form>-->
                         <#--                        </div>-->
                     </div>
                     <div class="ibox-tools m-t-xs">
@@ -124,31 +124,33 @@
 <script>
     var winname = window.name; //当前窗口的名称
     var JqGrid,
-        winWidth = '800px',
-        winHeight = '440px',
+        winWidth = '1000px',
+        winHeight = '500px',
         addTitle = "添加",
-        addUrl = "/s/bsProduct/addItem?product_id=${(product_id)!}",
+        addUrl = "/s/bsMediaCenter/add",
         editTitle = "编辑",
-        editUrl = "/s/bsProduct/updateItem",
-        deleteUrl = "/s/bsProduct/json/delItem",
+        editUrl = "/s/bsMediaCenter/update",
+        deleteUrl = "/s/bsMediaCenter/json/del",
         delMsg = "删除后无法找回数据，确定删除吗?",
-        lookQrCodeImgUrl = "/s/bsProduct/lookQeCodeImg",
+        lookQrCodeImgUrl = "/s/bsMediaCenter/lookQeCodeImg",
         lookQrCodeImgTitle = "查看下载apk二维码",
+        lookItemUrl = "/s/bsMediaCenter/getById",
+        lookItemTitle = "查看详情",
         startUpTitle="发布",
-        startUpUrl="/s/bsProduct/json/startUp",
+        startUpUrl="/s/bsMediaCenter/json/startUp",
         disableTitle="撤回",
-        disableUrl="/s/bsProduct/json/disable",
-        look ="s/bsProduct/json/getById"
+        disableUrl="/s/bsMediaCenter/json/disable",
+        look ="s/bsMediaCenter/json/getById"
         jqGridId = "#table_jq",
         jqPageId = "#pager_jq",
-        dataUrl = "/s/bsProduct/json/itemList?product_id=${(product_id)!}",
+        dataUrl = "/s/bsMediaCenter/json/list",
         formId = "#form";
     $(function () {
         $.jgrid.defaults.styleUI = "Bootstrap";
         $(jqGridId).jqGrid({
             url: dataUrl,
             datatype: "json",
-            colNames: ['ID', '标题', '描述','类型', '状态', '产品图片(url)', '创建时间', '更新时间'/*, '操作'*/],
+            colNames: ['ID', '标题', '内容', '状态', '类型', '资源链接(url)', '创建时间', '更新时间', '操作'],
             colModel: [
                 {
                     name: 'id',
@@ -158,20 +160,14 @@
                     key: true
                 },
                 {
-                    name: 'productTitle',
-                    index: 'productTitle',
+                    name: 'title',
+                    index: 'title',
                     width: '80'
                 },
                 {
-                    name: 'productDesc',
-                    index: 'productDesc',
+                    name: 'content',
+                    index: 'content',
                     width: '120'
-                },
-
-                {
-                    name: 'tableTypeName',
-                    index: 'tableTypeName',
-                    width: '80'
                 },
 
                 {
@@ -181,12 +177,19 @@
                 },
 
                 {
-                    name: 'productImgUrl',
-                    index: 'productImgUrl',
+                    name: 'typeName',
+                    index: 'typeName',
+                    width: '80'
+                },
+                {
+                    name: 'mediaUrl',
+                    index: 'mediaUrl',
                     width: '200',
                     formatter: function (cellvalue, options, rowObject) {
                         var str = "";
-                        str += '<a style="margin-bottom:0;"  title="查看" onclick="hm_fn_viewFun2(lookQrCodeImgTitle,winWidth,winHeight,lookQrCodeImgUrl,' + "'" + rowObject.id + "'" + ',winname)">' + rowObject.productImgUrl + '</a>&nbsp;';
+                        if(cellvalue !=="" || cellvalue !== undefined){
+                        str += '<a style="margin-bottom:0;"  title="查看" onclick="hm_fn_viewFun2(lookItemTitle,winWidth,winHeight,lookQrCodeImgUrl,' + "'" + rowObject.id + "'" + ',winname)">' + rowObject.mediaUrl + '</a>&nbsp;';
+                        }
                         return str;
                     }
                 },
@@ -200,16 +203,16 @@
                     index: 'updateTime',
                     width: '100'
                 },
-                //{
-                    //name: 'productImgUrl',
-                    //index: 'productImgUrl',
-                    //width: '200',
-                   // formatter: function (cellvalue, options, rowObject) {
-                        //var str = "";
-                      //  str += '<a style="margin-bottom:0;"  title="查看" onclick="hm_fn_viewFun2(lookQrCodeImgTitle,winWidth,winHeight,lookItemUrl,' + "'" + rowObject.id + "'" + ',winname)">删除</a>&nbsp;';
-                    //    return str;
-                  //  }
-                //}
+                {
+                    name: 'mediaUrl',
+                    index: 'mediaUrl',
+                    width: '200',
+                    formatter: function (cellvalue, options, rowObject) {
+                        var str = "";
+                        str += '<a style="margin-bottom:0;"  title="查看" onclick="hm_fn_viewFun2(lookItemTitle,winWidth,winHeight,lookItemUrl,' + "'" + rowObject.id + "'" + ',winname)">详情</a>&nbsp;';
+                        return str;
+                    }
+                }
             ],
             autowidth: true,
             height: "auto",    // 设为具体数值则会根据实际记录数出现垂直滚动条
@@ -280,6 +283,7 @@
         }
         hm_fn_editFun(editTitle, winWidth, winHeight, editUrl, ids, winname)
     });
+
     jQuery("#Dis").click(function () {
         var ids = jQuery(jqGridId).jqGrid('getGridParam', 'selarrrow');
         if (ids == '') {
@@ -296,6 +300,7 @@
         }
         hm_fn_del(jqGridId, dataUrl, startUpUrl, ids, startUpTitle)
     });
+
 
 
 </script>

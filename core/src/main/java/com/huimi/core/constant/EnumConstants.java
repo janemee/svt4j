@@ -1487,6 +1487,105 @@ public class EnumConstants {
     }
 
 
+    /**
+     * 客户留言处理状态
+     * 状态 0：待处理 1：跟进中，2.暂不处理，3.无效
+     */
+    public enum MediaCenterTypeEunm {
+        COMPANY(1, "COMPANY", "企业信息", "<span class=\"label label-primary\">企业信息</span>"),
+        MEDIA_CENTER(2, "MEDIA_CENTER", "媒体信息", "<span class=\"label label-info\">媒体信息</span>"),
+        EXHIBITION(3, "EXHIBITION", "展会信息", "<span class=\"label label-info\">展会信息</span>");
+
+
+        public final String code;
+        public final int value;
+        public final String desc;
+        public final String htmlStr;
+        private static Map<String, Integer> map = new HashMap<>();
+
+        MediaCenterTypeEunm(int value, String code, String desc, String htmlStr) {
+            this.code = code;
+            this.value = value;
+            this.desc = desc;
+            this.htmlStr = htmlStr;
+        }
+
+        public static int getValue(String code) {
+            if (null == code) {
+                return -1;
+            }
+            for (MediaCenterTypeEunm status : MediaCenterTypeEunm.values()) {
+                if (status.code.equals(code)) {
+                    return status.value;
+                }
+            }
+            return -1;
+        }
+
+        public static String getCode(int value) {
+            for (MediaCenterTypeEunm status : MediaCenterTypeEunm.values()) {
+                if (status.value == (value)) {
+                    return status.code;
+                }
+            }
+            return null;
+        }
+
+        public static String getHtmlStr(String code) {
+            if (null == code || "".equals(code)) {
+                return "";
+            }
+            for (MediaCenterTypeEunm status : MediaCenterTypeEunm.values()) {
+                if (status.code.equals(code)) {
+                    return status.htmlStr;
+                }
+            }
+            return "";
+        }
+
+        public static String getHtmlStr(Integer value) {
+            if (null == value) {
+                return "";
+            }
+            for (MediaCenterTypeEunm status : MediaCenterTypeEunm.values()) {
+                if (status.value == value.intValue()) {
+                    return status.htmlStr;
+                }
+            }
+            return "";
+        }
+
+
+        public static MediaCenterTypeEunm getTaskType(String code) {
+            if (null == code || "".equals(code)) {
+                return null;
+            }
+            for (MediaCenterTypeEunm status : MediaCenterTypeEunm.values()) {
+                if (status.code.equals(code)) {
+                    return status;
+                }
+            }
+            return null;
+        }
+
+        public static Map<String, Integer> getEnumMap() {
+            for (MediaCenterTypeEunm status : MediaCenterTypeEunm.values()) {
+                map.put(status.code, status.value);
+            }
+            return map;
+        }
+
+        public static List<EnumDTO> getList(){
+            List<EnumDTO> list = new ArrayList<>();
+            for (MediaCenterTypeEunm status : MediaCenterTypeEunm.values()){
+                list.add(new EnumDTO(status.htmlStr, status.value));
+            }
+            return list;
+        }
+    }
+
+
+
     public static void main(String[] args) {
 //        String ss = "#在抖音，记录美好生活#【俊姐 情感主播】正在直播，来和我一起支持TA吧。复制下方链接，打开【抖音短视频】，直接观看直播！ https://v.douyin.com/J617CGY/";
 //        //获取直播间地址

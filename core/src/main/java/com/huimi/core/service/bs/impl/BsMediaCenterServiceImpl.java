@@ -1,9 +1,9 @@
 package com.huimi.core.service.bs.impl;
 
 import com.huimi.common.baseMapper.GenericMapper;
-import com.huimi.core.mapper.bs.BsMessageBoardMapper;
-import com.huimi.core.po.bs.BsMessageBoardPo;
-import com.huimi.core.service.bs.BsMessageBoardService;
+import com.huimi.core.mapper.bs.BsMediaCenterMapper;
+import com.huimi.core.po.bs.BsMediaCenterPo;
+import com.huimi.core.service.bs.BsMediaCenterService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,30 +19,30 @@ import java.util.List;
 @Service
 @Scope("prototype")
 @Transactional(rollbackFor = Exception.class)
-public class BsMessageBoardServiceImpl implements BsMessageBoardService {
+public class BsMediaCenterServiceImpl implements BsMediaCenterService {
 
     @Resource
-    private BsMessageBoardMapper bsMessageBoardMapper;
+    private BsMediaCenterMapper bsMediaCenterMapper;
 
 
     @Override
-    public GenericMapper<BsMessageBoardPo, Integer> _getMapper() {
-        return bsMessageBoardMapper;
+    public GenericMapper<BsMediaCenterPo, Integer> _getMapper() {
+        return bsMediaCenterMapper;
     }
 
     @Override
     public void updateDelFlagByIds(Long id) {
-        bsMessageBoardMapper.updateDelFlagById(id);
+        bsMediaCenterMapper.updateDelFlagById(id);
     }
 
     @Override
-    public List<BsMessageBoardPo> findByTitleList(String productTitle) {
-        return bsMessageBoardMapper.findByTitleList(productTitle);
+    public List<BsMediaCenterPo> findByNameList(String productTitle) {
+        return bsMediaCenterMapper.findByNameList(productTitle);
     }
 
     @Override
     public void updateStatus(int id, int status) {
-        bsMessageBoardMapper.updateStatusById(id, status);
+        bsMediaCenterMapper.updateStatusById(status, id);
     }
 
 }

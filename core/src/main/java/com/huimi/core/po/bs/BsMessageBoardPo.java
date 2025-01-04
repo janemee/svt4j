@@ -50,6 +50,13 @@ public class BsMessageBoardPo extends GenericPo<Integer> {
     @Column(name = "status")
     private Integer status;
 
+    /**
+     * 留言内容
+     */
+    @Column(name = "content")
+    private Integer content;
+
+
     @Transient
     private String statusName;
 

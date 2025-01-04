@@ -963,12 +963,8 @@ function hm_fn_viewFun(title, width, height, url, id, winname, closeFunc) {
         maxmin: true,
         area: [width, height],
         btn: ['关闭'],
-        yes: function (index, layero) {
-            window.parent[layero.find('iframe')[0]['name']].validateForm();
-        },
+        yes: closeFunc,
         end: closeFunc,
-        cancel: function (index) {
-        },
         content: url
     });
 }
