@@ -25,4 +25,12 @@ public interface BsProductItemService extends GenericService<Integer, BsProductI
      * @param id
      */
     void updateStatus(int status, int id);
+
+    /**
+     * 根据产品id获取产品子项列表
+     * @param productId
+     * @return
+     */
+    List<BsProductItemPo> findListByProductId(Integer productId,Integer status);
+
 }

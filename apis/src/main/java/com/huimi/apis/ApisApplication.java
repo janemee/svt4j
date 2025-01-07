@@ -43,3 +43,4 @@ public class ApisApplication extends WebMvcConfigurerAdapter {
         registry.addInterceptor(new WebInterceptor()).addPathPatterns("/api/member/**");
     }
 }
+

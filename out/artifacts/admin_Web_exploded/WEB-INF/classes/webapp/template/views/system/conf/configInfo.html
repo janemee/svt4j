@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <!-- 样式文件加载开始 -->
+    <#include "../../include/res.html" >
+    <!-- 样式文件加载结束 -->
+<!--    <title>系统基础配置</title>-->
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content ">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="panel-heading ">
+<!--                    系统基础配置-->
+                </div>
+                <div class="alert alert-success">
+                    <b>温馨提示</b>
+                    <br> 该页面信息为系统配置参数，请勿随意更改
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="form" action="/s/config/json/updateInfo">
+                        <div class="col-sm-12 form-group">
+                            <label class="col-sm-2 control-label">公司名称</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="companyName" class="form-control" name="companyName" value="${(model.companyName)!}">
+                            </div>
+                            <i class="required-help col-sm-1">*</i>
+                        </div>
+                        <div class="col-sm-12 form-group">
+                            <label class="col-sm-2 control-label">公司地址</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="address" class="form-control" name="address" value="${(model.address)!}">
+                            </div>
+                            <i class="required-help col-sm-1">*</i>
+                        </div>
+                        <div class="col-sm-12 form-group">
+                            <label class="col-sm-2 control-label">国内营销部</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="cnMobile" class="form-control" name="cnMobile" value="${(model.cnMobile)!}">
+                            </div>
+                            <i class="required-help col-sm-1">*</i>
+                        </div>
+                        <div class="col-sm-12 form-group">
+                            <label class="col-sm-2 control-label">海外营销部</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="abroadMobile" class="form-control" name="abroadMobile" value="${(model.abroadMobile)!}">
+                            </div>
+                            <i class="required-help col-sm-1">*</i>
+                        </div>
+                        <div class="col-sm-12 form-group">
+                            <label class="col-sm-2 control-label">传真</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="fax" class="form-control" name="fax" value="${(model.fax)!}">
+                            </div>
+                            <i class="required-help col-sm-1">*</i>
+                        </div>
+                        <div class="col-sm-12 form-group">
+                            <label class="col-sm-2 control-label">备案号</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="webIcp" class="form-control" name="webIcp" value="${(model.webIcp)!}">
+                            </div>
+                            <i class="required-help col-sm-1">*</i>
+                        </div>
+                        <div class="col-sm-12 form-group">
+                            <label class="col-sm-2 control-label">版权所有标识</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="copyRight" class="form-control" name="copyRight" value="${(model.copyRight)!}">
+                            </div>
+                            <i class="required-help col-sm-1">*</i>
+                        </div>
+                    </form>
+                    <div class="col-sm-12 form-group">
+                        <label class="col-sm-2 control-label"></label>
+                        <div class="col-sm-8">
+                            <button href="javascript:void(0);"
+                                    onclick="validateForm()"
+                                    class="btn btn-warning btn-sm col-md-offset-6">
+                                <i class="fa fa-save"></i>&nbsp;保存
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- js加载开始 -->
+<#include "../../include/js.html">
+<script type="text/javascript" src="${cxt!}/ui/js/hm/config.js"></script>
+<script type="text/javascript">
+    var jqGridId = "#table_jq",
+        addUrl = "${cxt!}/s/config/index",
+        formId = "#form",
+        winname = "${winname!}";
+    jQuery(document).ready(function () {
+        ConfigJs.init();
+    });
+    function validateForm() {
+        $(formId).submit();
+    }
+
+</script>
+</body>
+
+</html>

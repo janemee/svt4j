@@ -12,8 +12,6 @@ import static com.alibaba.fastjson.serializer.SerializerFeature.*;
  */
 public interface Constants {
 
-    String PLATFORM_INVITE_CODE = "P80001";
-
     /**
      * 常量手机类型
      */
@@ -24,10 +22,6 @@ public interface Constants {
      */
     int EMAIL_TYPE = 2;
 
-    /**
-     * 常量0
-     */
-    Integer CONS_ZERO = 0;
 
     /**
      * 常量0
@@ -164,4 +158,86 @@ public interface Constants {
 
     public static final SerializerFeature[] SERIALIZER_FEATURES = {UseISO8601DateFormat, WriteNullListAsEmpty,
             WriteNullBooleanAsFalse, WriteEnumUsingToString, DisableCircularReferenceDetect, SkipTransientField, PrettyFormat, WriteMapNullValue};
+
+
+    /**
+     * 公司名称
+     */
+    String COMPANY_NAME = "company_name";
+
+    /**
+     * 服务热线（国内）
+     */
+    String CN_MOBILE = "cn_mobile";
+
+    /**
+     * 服务热线（海外）
+     */
+    String ABROAD_MOBILE = "abroad_mobile";
+
+    /**
+     * 传真
+     */
+    String FAX = "fax";
+
+    /**
+     * 公司地址
+     */
+    String COMPANY_ADDRESS = "company_address";
+
+    /**
+     * 网站ICP备案
+     */
+    String WEB_ICP = "web_icp";
+
+    /**
+     * 备案号
+     */
+    String COPY_RIGHT = "copy_right";
+
+
+    /**
+     * 公司起源
+     */
+    String companySource = "company_source";
+
+    /**
+     * 公司背景
+     */
+    String companyBackdrop = "company_back_drop";
+
+    /**
+         * 宣传视频url
+     */
+    String companyVideoUrl = "company_video_url";
+
+    /**
+     * 公司宣传文案
+     */
+    String companyCopyContent = "company_copy_content";
+
+    /**
+     * 公司宣传图片组
+     */
+    String companyPubPicUrl = "company_pub_pic_url";
+
+    /**
+     * 公司发展史
+     */
+    String companyHistoryOfDevUrl = "company_history_of_dev_url";
+    /**
+     * 企业文化
+     */
+    String corporateCulture = "corporate_culture";
+
+    /**
+     * 企业文化图片组
+     */
+    String corporateCulturePicUrl = "corporate_culture_pic_url";
+
+    /**
+     * 企业荣誉证书 图片
+     */
+    String enterpriseHonorCertPicUrl = "enterprise_honor_cert_pic_url";
+
 }

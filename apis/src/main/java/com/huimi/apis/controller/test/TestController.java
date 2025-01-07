@@ -155,7 +155,7 @@ public class TestController extends WebGenericController<Integer, Task> {
             list.add(bizApkHistoryModel);
             PageResult pageResult = new PageResult();
             pageResult.setList(list);
-            pageResult.setAmount(10L);
+//            pageResult.setAmount(10L);
             return new ResultEntity(pageResult,"");
         } catch (Exception e) {
             e.printStackTrace();
@@ -201,7 +201,7 @@ public class TestController extends WebGenericController<Integer, Task> {
             list.add(bizApkHistoryModel);
             PageResult pageResult = new PageResult();
             pageResult.setList(list);
-            pageResult.setAmount(10L);
+//            pageResult.setAmount(10L);
             return new ResultEntity(pageResult,"");
         } catch (Exception e) {
             e.printStackTrace();

@@ -48,4 +48,9 @@ public class BsProductItemServiceImpl implements BsProductItemService {
         bsProductItemMapper.updateStatusById(status,id);
     }
 
+    @Override
+    public List<BsProductItemPo> findListByProductId(Integer productId,Integer status) {
+        return bsProductItemMapper.findListByProductId(productId,status);
+    }
+
 }

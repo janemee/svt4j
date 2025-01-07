@@ -1,6 +1,9 @@
 package com.huimi.admin.controller.setting;
 
 import com.huimi.admin.controller.BaseController;
+import com.huimi.core.constant.Constants;
+import com.huimi.core.model.config.AbroadInfoModel;
+import com.huimi.core.model.config.ConfigInfoModel;
 import com.huimi.core.po.system.Conf;
 import com.huimi.core.service.system.ConfService;
 import org.springframework.stereotype.Controller;
@@ -68,4 +71,62 @@ public class ConfigureController extends BaseController {
         return modelAndView;
     }
 
+    /**
+     * 参数配置列表
+     *
+     * @return
+     */
+    @RequestMapping("/config/index")
+    public ModelAndView info() {
+        ModelAndView modelAndView = new ModelAndView();
+        //公司名称
+        String companyName = confService.getConfigByKey(Constants.COMPANY_NAME);
+        //销售电话(国内)
+        String cnMobile = confService.getConfigByKey(Constants.CN_MOBILE);
+        //销售电话(国内)
+        String abroadMobile = confService.getConfigByKey(Constants.ABROAD_MOBILE);
+        //传真
+        String fax = confService.getConfigByKey(Constants.FAX);
+        //地址
+        String  address = confService.getConfigByKey(Constants.COMPANY_ADDRESS);
+        //备案号
+        String webIcp = confService.getConfigByKey(Constants.WEB_ICP);
+        //copy_right
+        String copyRight = confService.getConfigByKey(Constants.COPY_RIGHT);
+        ConfigInfoModel config = new ConfigInfoModel();
+        config.setAbroadMobile(abroadMobile);
+        config.setCnMobile(cnMobile);
+        config.setCopyRight(copyRight);
+        config.setFax(fax);
+        config.setCompanyName(companyName);
+        config.setAddress(address);
+        config.setWebIcp(webIcp);
+        modelAndView.addObject("model",config);
+        modelAndView.setViewName("system/conf/configInfo");
+        return modelAndView;
+    }
+
+
+    /**
+     * 关于企业
+     *
+     * @return
+     */
+    @RequestMapping("/config/abroadInfo")
+    public ModelAndView abroadInfo() {
+        ModelAndView modelAndView = new ModelAndView();
+        AbroadInfoModel config = new AbroadInfoModel();
+        config.setCompanyBackdrop(confService.getConfigByKey(Constants.companyBackdrop));
+        config.setCompanySource(confService.getConfigByKey(Constants.companySource));
+        config.setCompanyVideoUrl(confService.getConfigByKey(Constants.companyVideoUrl));
+        config.setCompanyCopyContent(confService.getConfigByKey(Constants.companyCopyContent));
+        config.setCompanyPubPicUrl(confService.getConfigByKey(Constants.companyPubPicUrl));
+        config.setCompanyHistoryOfDevUrl(confService.getConfigByKey(Constants.companyHistoryOfDevUrl));
+        config.setCorporateCulture(confService.getConfigByKey(Constants.corporateCulture));
+        config.setCorporateCulturePicUrl(confService.getConfigByKey(Constants.corporateCulturePicUrl));
+        config.setEnterpriseHonorCertPicUrl(confService.getConfigByKey(Constants.enterpriseHonorCertPicUrl));
+        modelAndView.addObject("model", config);
+        modelAndView.setViewName("system/conf/abroadInfo");
+        return modelAndView;
+    }
 }

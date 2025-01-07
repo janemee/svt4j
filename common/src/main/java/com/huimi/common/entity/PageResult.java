@@ -10,8 +10,15 @@ import java.util.Collection;
 @Data
 public class PageResult<T> {
 
+    /**
+     * 数据列表
+     */
     private Collection<T> list;
 
-    private Long amount;
+    /**
+     * 总条数
+     */
+    private Integer totalCount;
+
 
 }

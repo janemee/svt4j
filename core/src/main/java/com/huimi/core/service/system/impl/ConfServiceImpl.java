@@ -49,8 +49,8 @@ public class ConfServiceImpl implements ConfService {
     }
 
     @Override
-    public Integer updateConfByNid(String customer_qrcode_img, String url) {
-        return confMapper.updateConfByNid(customer_qrcode_img, url);
+    public Integer updateConfByNid(String nid, String value) {
+        return confMapper.updateConfByNid(nid, value);
     }
 
     @Override

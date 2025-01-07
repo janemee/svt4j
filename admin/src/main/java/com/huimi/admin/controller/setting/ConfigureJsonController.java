@@ -7,6 +7,9 @@ import com.huimi.common.entity.ResultEntity;
 import com.huimi.common.entity.dtgrid.DtGrid;
 import com.huimi.common.utils.StringUtils;
 import com.huimi.core.constant.CacheID;
+import com.huimi.core.constant.Constants;
+import com.huimi.core.model.config.AbroadInfoModel;
+import com.huimi.core.model.config.ConfigInfoModel;
 import com.huimi.core.po.system.Conf;
 import com.huimi.core.service.cache.RedisService;
 import com.huimi.core.service.system.ConfService;
@@ -14,6 +17,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -163,6 +167,47 @@ public class ConfigureJsonController extends GenericController<Integer, Conf> {
         map.put("lk_nid", "global_ban");
         dtGrid.setFastQueryParameters(map);
         return confService.getDtGridList(dtGrid);
+    }
+
+
+
+    /**
+     * 全局控制列表json数据
+     *
+     * @param params
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/config/json/updateInfo")
+    public ResultEntity updateInfoJson(ConfigInfoModel params) throws Exception {
+        confService.updateConfByNid(Constants.COMPANY_NAME, params.getCompanyName());
+        confService.updateConfByNid(Constants.COMPANY_ADDRESS, params.getAddress());
+        confService.updateConfByNid(Constants.CN_MOBILE, params.getCnMobile());
+        confService.updateConfByNid(Constants.ABROAD_MOBILE, params.getAbroadMobile());
+        confService.updateConfByNid(Constants.FAX, params.getFax());
+        confService.updateConfByNid(Constants.WEB_ICP, params.getWebIcp());
+        confService.updateConfByNid(Constants.COPY_RIGHT, params.getCopyRight());
+        return ResultEntity.success();
+    }
+
+
+    /**
+     * 关于企业
+     *
+     * @return
+     */
+    @RequestMapping("/config/json/updateAbroadInfo")
+    public ResultEntity updateAbroadInfoJson(AbroadInfoModel params) {
+        confService.updateConfByNid(Constants.companyBackdrop, params.getCompanyBackdrop());
+        confService.updateConfByNid(Constants.companySource, params.getCompanySource());
+        confService.updateConfByNid(Constants.companyVideoUrl, params.getCompanyVideoUrl());
+        confService.updateConfByNid(Constants.companyCopyContent, params.getCompanyCopyContent());
+        confService.updateConfByNid(Constants.companyPubPicUrl, params.getCompanyPubPicUrl());
+        confService.updateConfByNid(Constants.companyHistoryOfDevUrl, params.getCompanyHistoryOfDevUrl());
+        confService.updateConfByNid(Constants.corporateCulture, params.getCorporateCulture());
+        confService.updateConfByNid(Constants.corporateCulturePicUrl, params.getCompanyPubPicUrl());
+        confService.updateConfByNid(Constants.enterpriseHonorCertPicUrl, params.getEnterpriseHonorCertPicUrl());
+        return ResultEntity.success();
     }
 
 }

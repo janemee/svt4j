@@ -20,7 +20,7 @@ spring:
     username: root
     password: aa123123
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost/small_video_tool?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    url: jdbc:mysql://localhost/hz_tz_zsj_prod?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
     dbcp2:
       # 连接池中的最大空闲连接
       max-idle: 100

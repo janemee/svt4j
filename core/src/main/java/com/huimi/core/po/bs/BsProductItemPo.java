@@ -69,6 +69,9 @@ public class BsProductItemPo extends GenericPo<Integer> {
     @Transient
     private String tableTypeName;
 
+    @Transient
+    private String tableTypeDesc;
+
     public String getStatusName() {
         return EnumConstants.ApplicationStatusEunm.getHtmlStr(this.status);
     }
@@ -77,4 +80,5 @@ public class BsProductItemPo extends GenericPo<Integer> {
         return EnumConstants.ProductTypeEunm.getHtmlStr(this.tableType);
     }
 
+    public String getTableTypeDesc() { return EnumConstants.ProductTypeEunm.getDesc(this.tableType); }
 }

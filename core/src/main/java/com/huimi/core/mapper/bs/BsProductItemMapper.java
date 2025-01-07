@@ -24,4 +24,7 @@ public interface BsProductItemMapper extends GenericMapper<BsProductItemPo, Inte
 
     @Update(" update bs_product_item set status = #{status} , update_time = now() where id = #{id}")
     void updateStatusById(@Param("status") int status, @Param("id") int id);
+
+    @Select("select * from bs_product_item where product_id = #{productId} and del_flag = 0 status = #{status} order by update_time desc")
+    List<BsProductItemPo> findListByProductId(@Param("productId") Integer productId, @Param("status") Integer status);
 }

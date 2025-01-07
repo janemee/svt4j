@@ -54,7 +54,7 @@ public class BsMessageBoardPo extends GenericPo<Integer> {
      * 留言内容
      */
     @Column(name = "content")
-    private Integer content;
+    private String content;
 
 
     @Transient

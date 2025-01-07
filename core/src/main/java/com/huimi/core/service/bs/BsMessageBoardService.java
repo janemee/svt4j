@@ -1,5 +1,6 @@
 package com.huimi.core.service.bs;
 
+import com.huimi.core.model.bs.UserMessageModel;
 import com.huimi.core.po.bs.BsMessageBoardPo;
 import com.huimi.core.po.bs.BsNoticePo;
 import com.huimi.core.service.base.GenericService;
@@ -33,4 +34,12 @@ public interface BsMessageBoardService extends GenericService<Integer, BsMessage
      * @param status 状态
      */
     void updateStatus(int id, int status);
+
+    /**
+     * 添加留言信息
+     * @param userMessageModel
+     * @return
+     */
+    boolean sava(UserMessageModel userMessageModel);
+
 }

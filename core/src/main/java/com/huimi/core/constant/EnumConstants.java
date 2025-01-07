@@ -1243,6 +1243,15 @@ public class EnumConstants {
             return null;
         }
 
+        public static String getDesc(int value) {
+            for (ProductTypeEunm status : ProductTypeEunm.values()) {
+                if (status.value == (value)) {
+                    return status.desc;
+                }
+            }
+            return "";
+        }
+
         public static String getHtmlStr(String code) {
             if (null == code || "".equals(code)) {
                 return "";

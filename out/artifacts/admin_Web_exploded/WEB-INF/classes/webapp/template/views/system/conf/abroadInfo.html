@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <!-- 样式文件加载开始 -->
+    <#include "../../include/res.html" >
+    <!-- 样式文件加载结束 -->
+<!--    <title>系统基础配置</title>-->
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content ">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="panel-heading ">
+<!--                    系统基础配置-->
+                </div>
+                <div class="alert alert-success">
+                    <b>温馨提示</b>
+                    <br> 该页面内容为企业宣传信息，显示在 门户网站->关于企业 页面
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="form" action="/s/config/json/updateAbroadInfo">
+                        <div class="col-sm-12 form-group">
+                            <label class="col-sm-2 control-label">公司起源</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="companySource" class="form-control" name="companySource" value="${(model.companySource)!}">
+                            </div>
+                            <i class="required-help col-sm-1">*</i>
+                        </div>
+                        <div class="col-sm-12 form-group">
+                            <label class="col-sm-2 control-label">公司背景</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="companyBackdrop" class="form-control" name="companyBackdrop" value="${(model.companyBackdrop)!}">
+                            </div>
+                            <i class="required-help col-sm-1">*</i>
+                        </div>
+                        <div class="col-sm-12 form-group">
+                            <label class="col-sm-2 control-label">宣传视频</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="companyVideoUrl" class="form-control" name="companyVideoUrl" value="${(model.companyVideoUrl)!}">
+                            </div>
+                            <i class="required-help col-sm-1">*</i>
+                        </div>
+                        <div class="col-sm-12 form-group">
+                            <label class="col-sm-2 control-label">公司宣传文案</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="companyCopyContent" class="form-control" name="companyCopyContent" value="${(model.companyCopyContent)!}">
+                            </div>
+                            <i class="required-help col-sm-1">*</i>
+                        </div>
+                        <div class="col-sm-12 form-group">
+                            <label class="col-sm-2 control-label">公司宣传图片组</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="companyPubPicUrl" class="form-control" name="companyPubPicUrl" value="${(model.companyPubPicUrl)!}">
+                            </div>
+                            <i class="required-help col-sm-1">*</i>
+                        </div>
+                        <div class="col-sm-12 form-group">
+                            <label class="col-sm-2 control-label">公司发展史(图片组)</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="companyHistoryOfDevUrl" class="form-control" name="companyHistoryOfDevUrl" value="${(model.companyHistoryOfDevUrl)!}">
+                            </div>
+                            <i class="required-help col-sm-1">*</i>
+                        </div>
+                        <div class="col-sm-12 form-group">
+                            <label class="col-sm-2 control-label">企业文化</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="corporateCulture" class="form-control" name="corporateCulture" value="${(model.corporateCulture)!}">
+                            </div>
+                            <i class="required-help col-sm-1">*</i>
+                        </div>
+                        <div class="col-sm-12 form-group">
+                            <label class="col-sm-2 control-label">企业文化(图片)</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="corporateCulturePicUrl" class="form-control" name="corporateCulturePicUrl" value="${(model.corporateCulturePicUrl)!}">
+                            </div>
+                            <i class="required-help col-sm-1">*</i>
+                        </div>
+                        <div class="col-sm-12 form-group">
+                            <label class="col-sm-2 control-label">企业荣誉证书(图片)</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="enterpriseHonorCertPicUrl" class="form-control" name="enterpriseHonorCertPicUrl" value="${(model.enterpriseHonorCertPicUrl)!}">
+                            </div>
+                            <i class="required-help col-sm-1">*</i>
+                        </div>
+                    </form>
+                    <div class="col-sm-12 form-group">
+                        <label class="col-sm-2 control-label"></label>
+                        <div class="col-sm-8">
+                            <button href="javascript:void(0);"
+                                    onclick="validateForm()"
+                                    class="btn btn-warning btn-sm col-md-offset-6">
+                                <i class="fa fa-save"></i>&nbsp;保存
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- js加载开始 -->
+<#include "../../include/js.html">
+<script type="text/javascript" src="${cxt!}/ui/js/hm/config.js"></script>
+<script type="text/javascript">
+    var jqGridId = "#table_jq",
+        addUrl = "${cxt!}/s/config/abroadInfo",
+        formId = "#form",
+        winname = "${winname!}";
+    jQuery(document).ready(function () {
+        ConfigJs.init_abroad();
+    });
+    function validateForm() {
+        $(formId).submit();
+    }
+
+</script>
+</body>
+
+</html>
