@@ -3,6 +3,7 @@ package com.huimi.admin.controller.setting;
 import com.huimi.admin.controller.BaseController;
 import com.huimi.core.constant.Constants;
 import com.huimi.core.model.config.AbroadInfoModel;
+import com.huimi.core.model.config.BannerInfoModel;
 import com.huimi.core.model.config.ConfigInfoModel;
 import com.huimi.core.po.system.Conf;
 import com.huimi.core.service.system.ConfService;
@@ -66,7 +67,7 @@ public class ConfigureController extends BaseController {
     public ModelAndView update(Integer ids) {
         Conf conf = confService.selectByPrimaryKey(ids);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("conf",conf);
+        modelAndView.addObject("conf", conf);
         modelAndView.setViewName("system/conf/update");
         return modelAndView;
     }
@@ -88,7 +89,7 @@ public class ConfigureController extends BaseController {
         //传真
         String fax = confService.getConfigByKey(Constants.FAX);
         //地址
-        String  address = confService.getConfigByKey(Constants.COMPANY_ADDRESS);
+        String address = confService.getConfigByKey(Constants.COMPANY_ADDRESS);
         //备案号
         String webIcp = confService.getConfigByKey(Constants.WEB_ICP);
         //copy_right
@@ -101,7 +102,7 @@ public class ConfigureController extends BaseController {
         config.setCompanyName(companyName);
         config.setAddress(address);
         config.setWebIcp(webIcp);
-        modelAndView.addObject("model",config);
+        modelAndView.addObject("model", config);
         modelAndView.setViewName("system/conf/configInfo");
         return modelAndView;
     }
@@ -127,6 +128,28 @@ public class ConfigureController extends BaseController {
         config.setEnterpriseHonorCertPicUrl(confService.getConfigByKey(Constants.enterpriseHonorCertPicUrl));
         modelAndView.addObject("model", config);
         modelAndView.setViewName("system/conf/abroadInfo");
+        return modelAndView;
+    }
+
+
+    /**
+     * 门户资源图片管理
+     *
+     * @return
+     */
+    @RequestMapping("/config/banner")
+    public ModelAndView banner() {
+        ModelAndView modelAndView = new ModelAndView();
+        BannerInfoModel config = new BannerInfoModel();
+        config.setIndexBannerImgUrl(confService.getConfigByKey(Constants.INDEX_BANNER_IMG_URL));
+        config.setAbroadBannerImgUrl(confService.getConfigByKey(Constants.ABROAD_BANNER_IMG_URL));
+        config.setProductBannerImgUrl(confService.getConfigByKey(Constants.PRODUCT_BANNER_IMG_URL));
+        config.setApplicationBannerImgUrl(confService.getConfigByKey(Constants.APPLICATION_BANNER_IMG_URL));
+        config.setMediaBannerImgUrl(confService.getConfigByKey(Constants.MEDIA_BANNER_IMG_URL));
+        config.setClientBannerImgUrl(confService.getConfigByKey(Constants.CLIENT_BANNER_IMG_URL));
+        config.setBoardBannerImgUrl(confService.getConfigByKey(Constants.BOARD_BANNER_IMG_URL));
+        modelAndView.addObject("model", config);
+        modelAndView.setViewName("system/conf/banner");
         return modelAndView;
     }
 }

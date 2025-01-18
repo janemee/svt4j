@@ -90,12 +90,12 @@ public class MediaCenterController extends WebGenericController<Integer, BsMedia
 
     @ApiOperation(value = "媒体详情")
     @RequestMapping("/info")
-    public ResultEntity<Object> productInfo(@RequestParam Integer productId) {
+    public ResultEntity<Object> productInfo(@RequestParam Integer id) {
         try {
-            if(Objects.isNull(productId)){
+            if(Objects.isNull(id)){
                 return fail("参数有误");
             }
-            BsMediaCenterPo bsMediaCenterPo  = bsMediaCenterService.selectByPrimaryKey(productId);
+            BsMediaCenterPo bsMediaCenterPo  = bsMediaCenterService.selectByPrimaryKey(id);
             if(Objects.isNull(bsMediaCenterPo) || EnumConstants.ApplicationStatusEunm.YES.value != bsMediaCenterPo.getStatus()){
                 return  fail("产品不存在,请检查后重试");
             }

@@ -240,4 +240,32 @@ public interface Constants {
      */
     String enterpriseHonorCertPicUrl = "enterprise_honor_cert_pic_url";
 
+    /**
+     * 首页banner图
+     */
+    String INDEX_BANNER_IMG_URL = "index_banner_img_url";
+    /**
+     * 关于banner图
+     */
+    String ABROAD_BANNER_IMG_URL = "abroad_banner_img_url";
+    /**
+     * 产品banner图
+     */
+    String PRODUCT_BANNER_IMG_URL = "product_banner_img_url";
+    /**
+     * 应用领域banner
+     */
+    String APPLICATION_BANNER_IMG_URL = "application_banner_img_url";
+    /**
+     * 媒体资源banner
+     */
+    String MEDIA_BANNER_IMG_URL = "media_banner_img_url";
+    /**
+     * 客户服务banner
+     */
+    String CLIENT_BANNER_IMG_URL = "client_banner_img_url";
+    /**
+     * 联系我们
+     */
+    String BOARD_BANNER_IMG_URL = "board_banner_img_url";
 }

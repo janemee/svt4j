@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 样式文件加载开始 -->
+    <#include "/include/res.html" >
+    <!-- 样式文件加载结束 -->
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content ">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <form class="form-horizontal m-t" id="form" action="/s/config/json/banner">
+                <div class="col-sm-12 form-group">
+                    <label class="col-sm-2 control-label">首页banner图</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="indexBannerImgUrl" class="form-control" name="indexBannerImgUrl" value="${(model.indexBannerImgUrl)!}">
+                        <img src="${cxt!}/ui/img/timg.jpeg" id="indexPicImg" alt="" class="media-object viewImage"  width="100px" height="100px">
+                        <input id="addPic" type="file" name="file" onchange="upload('indexPicImg','indexBannerImgUrl')">
+                    </div>
+                    <i class="required-help col-sm-1">*</i>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label class="col-sm-2 control-label">关于banner图</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="abroadBannerImgUrl" class="form-control" name="abroadBannerImgUrl" value="${(model.abroadBannerImgUrl)!}">
+                    </div>
+                    <i class="required-help col-sm-1">*</i>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label class="col-sm-2 control-label">产品banner图</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="productBannerImgUrl" class="form-control" name="productBannerImgUrl" value="${(model.productBannerImgUrl)!}">
+                    </div>
+                    <i class="required-help col-sm-1">*</i>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label class="col-sm-2 control-label">应用领域banner</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="applicationBannerImgUrl" class="form-control" name="applicationBannerImgUrl" value="${(model.applicationBannerImgUrl)!}">
+                    </div>
+                    <i class="required-help col-sm-1">*</i>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label class="col-sm-2 control-label">媒体资源banner</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="mediaBannerImgUrl" class="form-control" name="mediaBannerImgUrl" value="${(model.mediaBannerImgUrl)!}">
+                    </div>
+                    <i class="required-help col-sm-1">(多个图片以","隔开)</i>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label class="col-sm-2 control-label">客户服务banner</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="clientBannerImgUrl" class="form-control" name="clientBannerImgUrl" value="${(model.clientBannerImgUrl)!}">
+                    </div>
+                    <i class="required-help col-sm-1">(多个图片以","隔开)</i>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label class="col-sm-2 control-label">联系我们banner</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="boardBannerImgUrl" class="form-control" name="boardBannerImgUrl" value="${(model.boardBannerImgUrl)!}">
+                    </div>
+                    <i class="required-help col-sm-1">*</i>
+                </div>
+            </form>
+            <div class="col-sm-12 form-group">
+                <label class="col-sm-2 control-label"></label>
+                <div class="col-sm-8">
+                    <button href="javascript:void(0);"
+                            onclick="validateForm()"
+                            class="btn btn-warning btn-sm col-md-offset-6">
+                        <i class="fa fa-save"></i>&nbsp;保存
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+</div>
+</div>
+</div>
+<!-- js加载开始 -->
+<#include "/include/js.html">
+<script src="/ui/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="/public/plugins/fileupload/jquery.fileupload.js"></script>
+<script src="/public/plugins/jquery-thumb/jqthumb.js"></script>
+
+<script type="text/javascript">
+    var jqGridId = "#table_jq",
+        dataUrl = "${cxt!}/s/sysBanner/json/list",
+        formId = "#form",
+        winname = "${winname!}";
+        var funcs = {
+        initForm: function() {
+<!--            if ("${sysBanner.isShow.code}" == 1 || "${sysBanner.isShow.code}" == '1') {-->
+<!--                $("#radio1").attr("checked", true);-->
+<!--            } else {-->
+<!--                $("#radio0").attr("checked", true);-->
+<!--            }-->
+<!--            $('#editPicImg').attr('src', "${sysBanner.picUrl}");-->
+<!--            //图片同比例缩放-编辑-->
+<!--            _refreshImage();-->
+        },
+        initSubmit: function (form) {
+            $(formId).validate({
+                errorElement: 'span', //default input error message container
+                errorClass: 'help-block', // default input error message class
+                focusInvalid: false, // do not focus the last invalid input
+                ignore: "",
+                rules: {
+                },
+                invalidHandler: function(event, validator) { //display error alert on form submit
+                },
+                highlight: function(element) { // hightlight error inputs
+                    $(element).closest('.form-group').addClass('has-error'); // set error class to the control group
+                },
+                unhighlight: function(element) { // revert the change done by hightlight
+                    $(element).closest('.form-group').removeClass('has-error'); // set error class to the control group
+                },
+                success: function(label) {
+                    label.closest('.form-group').removeClass('has-error'); // set success class to the control group
+                    label.remove();
+                },
+                submitHandler: function(form) {
+                    var index = parent.layer.getFrameIndex(window.name);
+                    var title = "提示";
+                    //loading层提示
+                    var loading = layer.load(2, {
+                        shade: [0.3, '#fff']
+                    });
+                    $.ajax({
+                        type: "POST",
+                        async: false,
+                        data: $(form).serialize(),
+                        url: "/s/config/json/banner",
+                        success: function(data) {
+                            var successMsg = data.message || "更新成功!",
+                                failedMsg = data.message || "更新失败!";
+
+                            if (data.code == 200) {
+                                parent.notifications('success', successMsg, title);
+                            } else {
+                                parent.notifications('error', failedMsg, title);
+                            }
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            parent.notifications('error', "更新失败,请检查网络!", title);
+                        },
+                        complete: function() {
+                            layer.close(loading);
+                            parent.layer.close(index);
+                        }
+                    });
+                }
+            });
+        }
+
+    };
+
+
+    jQuery(document).ready(function () {
+        funcs.initSubmit();
+        funcs.initForm();
+    });
+
+<!--    function validateForm() {-->
+<!--        var pic = $('#editPicPath').val();-->
+<!--        if (pic == '' ){-->
+<!--            top.layer.alert("请上传图片!", {-->
+<!--                icon: 5,-->
+<!--                shadeClose: true-->
+<!--            });-->
+<!--            return false;-->
+<!--        }-->
+<!--        $(formId).submit();-->
+<!--    }-->
+
+    //图片上传
+    function upload(var imgId,var valueName) {
+        var data = new FormData();
+        var pic = $('#editPic')[0].files[0];
+        data.append('file', pic);
+        $.ajax({
+            type: "POST",
+            async: false,
+            contentType: false,
+            processData: false,
+            data: data,
+            url: "/s/file/upload",
+            success: function (data) {
+                if (data.code === 200) {
+                    $('#$valueName').val(data.data);
+                    $('#$imgId').attr('src', data.data);
+                    parent.notifications('success', '上传成功');
+                } else {
+                    parent.notifications('error', '上传失败');
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                parent.notifications('error', '操作失败,请检查网络!');
+            },
+        });
+    }
+</script>
+</body>
+
+</html>

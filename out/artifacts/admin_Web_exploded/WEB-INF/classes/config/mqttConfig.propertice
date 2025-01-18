@@ -1,0 +1,18 @@
+#MQTT-服务端地址
+publish.mqtt.host=tcp://localhost:1883
+#MQTT-服务端用户名
+publish.mqtt.username=admin
+#MQTT-服务端密码
+publish.mqtt.password=public
+#MQTT-是否清理session
+publish.mqtt.cleansession=false
+#MQTT-当前客户端的唯一标识
+publish.mqtt.clientid=mqtt_publish
+#当前客户端的默认主题(大多数时候没什么用)
+publish.mqtt.default_topic=测试
+#发送超时时间
+publish.mqtt.timeout=1000
+#心跳时间
+publish.mqtt.keepalive = 10
+#连接超时时间
+publish.mqtt.connectionTimeout=3000

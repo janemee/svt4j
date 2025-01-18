@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 样式文件加载开始 -->
+    <#include "/include/res.html" >
+    <!-- 样式文件加载结束 -->
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content ">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <form class="form-horizontal m-t" id="form" action="/s/config/json/banner">
+                <div class="col-sm-12 form-group">
+                    <label class="col-sm-2 control-label">首页banner图</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="indexBannerImgUrl" class="form-control" name="indexBannerImgUrl" value="${(model.indexBannerImgUrl)!}">
+                        <img src="${cxt!}/ui/img/timg.jpeg" id="indexPicImg" alt="" class="media-object viewImage"  width="100px" height="100px">
+                        <input id="addPic" type="file" name="file" onchange="upload('indexPicImg','indexBannerImgUrl')">
+                    </div>
+                    <i class="required-help col-sm-1">*</i>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label class="col-sm-2 control-label">关于banner图</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="abroadBannerImgUrl" class="form-control" name="abroadBannerImgUrl" value="${(model.abroadBannerImgUrl)!}">
+                    </div>
+                    <i class="required-help col-sm-1">*</i>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label class="col-sm-2 control-label">产品banner图</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="productBannerImgUrl" class="form-control" name="productBannerImgUrl" value="${(model.productBannerImgUrl)!}">
+                    </div>
+                    <i class="required-help col-sm-1">*</i>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label class="col-sm-2 control-label">应用领域banner</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="applicationBannerImgUrl" class="form-control" name="applicationBannerImgUrl" value="${(model.applicationBannerImgUrl)!}">
+                    </div>
+                    <i class="required-help col-sm-1">*</i>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label class="col-sm-2 control-label">媒体资源banner</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="mediaBannerImgUrl" class="form-control" name="mediaBannerImgUrl" value="${(model.mediaBannerImgUrl)!}">
+                    </div>
+                    <i class="required-help col-sm-1">(多个图片以","隔开)</i>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label class="col-sm-2 control-label">客户服务banner</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="clientBannerImgUrl" class="form-control" name="clientBannerImgUrl" value="${(model.clientBannerImgUrl)!}">
+                    </div>
+                    <i class="required-help col-sm-1">(多个图片以","隔开)</i>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label class="col-sm-2 control-label">联系我们banner</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="boardBannerImgUrl" class="form-control" name="boardBannerImgUrl" value="${(model.boardBannerImgUrl)!}">
+                    </div>
+                    <i class="required-help col-sm-1">*</i>
+                </div>
+            </form>
+            <div class="col-sm-12 form-group">
+                <label class="col-sm-2 control-label"></label>
+                <div class="col-sm-8">
+                    <button href="javascript:void(0);"
+                            onclick="validateForm()"
+                            class="btn btn-warning btn-sm col-md-offset-6">
+                        <i class="fa fa-save"></i>&nbsp;保存
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+</div>
+</div>
+</div>
+<!-- js加载开始 -->
+<#include "/include/js.html">
+<script type="text/javascript" src="${cxt!}/ui/js/hm/config.js"></script>
+<script type="text/javascript">
+    var jqGridId = "#table_jq",
+        dataUrl = "${cxt!}/s/config/json/banner",
+        formId = "#form",
+        winname = "${winname!}";
+    jQuery(document).ready(function () {
+        apkHistoryJs.init();
+        //页面初始化 隐藏二维码图片显示
+        $("#pic").hide();
+    });
+
+    function validateForm() {
+        $(formId).submit();
+    }
+    <!--上传图片 -->
+    $(function () {
+        $("#upload").click(function () {
+            // $("#upload").click(); //隐藏了input:file样式后，点击头像就可以本地上传
+            $("#upload").on("change", function () {
+                var objUrl = getObjectURL(this.files[0]); //获取图片的路径，该路径不是图片在本地的路径
+                if (objUrl) {
+                    upimg();
+                }
+            });
+        });
+    });
+
+    //建立一?可存取到?file的url
+    function getObjectURL(file) {
+        // console.log(1)
+        var url = null;
+        if (window.createObjectURL != undefined) { // basic
+            url = window.createObjectURL(file);
+        } else if (window.URL != undefined) { // mozilla(firefox)
+            url = window.URL.createObjectURL(file);
+        } else if (window.webkitURL != undefined) { // webkit or chrome
+            url = window.webkitURL.createObjectURL(file);
+        }
+        return url;
+    }
+
+    //上传头像到服务器
+    function upimg() {
+        // parent.notifications('info', '正在上传文件请勿操作', "系统提示");
+        $("#msg").text("正在上传文件.....请勿操作");
+        var file = new FormData();
+        var pic = $('#upload')[0].files[0];
+        file.append('file', pic);
+        $.ajax({
+            url: "/s/file/upload",
+            type: "post",
+            data: file,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                //将回传地址赋给input
+                var res = data;
+                if (data.code == 200) {
+                    console.log(res.data)
+                    //回传地址用以数据保存
+                    $("#indexBannerImgUrl").val(res.data);
+                    $("#indexPicImg").attr("src", res.data);
+                    // parent.notifications('success', data.msg, "系统提示");
+                    $("#msg").text("文件上传成功");
+                    //显示图片
+                    $("#pic").show();
+                } else {
+                    $("#msg").text("文件上传失败");
+                    // parent.notifications('error', data.msg, "系统提示");
+                }
+            }
+        });
+    }
+</script>
+</body>
+
+</html>

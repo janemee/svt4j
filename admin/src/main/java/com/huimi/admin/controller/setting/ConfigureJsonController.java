@@ -9,6 +9,7 @@ import com.huimi.common.utils.StringUtils;
 import com.huimi.core.constant.CacheID;
 import com.huimi.core.constant.Constants;
 import com.huimi.core.model.config.AbroadInfoModel;
+import com.huimi.core.model.config.BannerInfoModel;
 import com.huimi.core.model.config.ConfigInfoModel;
 import com.huimi.core.po.system.Conf;
 import com.huimi.core.service.cache.RedisService;
@@ -207,6 +208,24 @@ public class ConfigureJsonController extends GenericController<Integer, Conf> {
         confService.updateConfByNid(Constants.corporateCulture, params.getCorporateCulture());
         confService.updateConfByNid(Constants.corporateCulturePicUrl, params.getCompanyPubPicUrl());
         confService.updateConfByNid(Constants.enterpriseHonorCertPicUrl, params.getEnterpriseHonorCertPicUrl());
+        return ResultEntity.success();
+    }
+
+
+    /**
+     * 门户资源图片管理
+     *
+     * @return
+     */
+    @RequestMapping("/config/json/banner")
+    public ResultEntity banner(BannerInfoModel params) {
+        confService.updateConfByNid(Constants.INDEX_BANNER_IMG_URL, params.getIndexBannerImgUrl());
+        confService.updateConfByNid(Constants.ABROAD_BANNER_IMG_URL, params.getAbroadBannerImgUrl());
+        confService.updateConfByNid(Constants.PRODUCT_BANNER_IMG_URL, params.getProductBannerImgUrl());
+        confService.updateConfByNid(Constants.APPLICATION_BANNER_IMG_URL, params.getApplicationBannerImgUrl());
+        confService.updateConfByNid(Constants.MEDIA_BANNER_IMG_URL, params.getMediaBannerImgUrl());
+        confService.updateConfByNid(Constants.CLIENT_BANNER_IMG_URL, params.getClientBannerImgUrl());
+        confService.updateConfByNid(Constants.BOARD_BANNER_IMG_URL, params.getBoardBannerImgUrl());
         return ResultEntity.success();
     }
 

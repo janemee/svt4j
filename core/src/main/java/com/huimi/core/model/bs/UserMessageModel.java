@@ -1,8 +1,8 @@
 package com.huimi.core.model.bs;
 
-import com.sun.xml.internal.ws.developer.Serialization;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * 用户留言板
@@ -11,16 +11,15 @@ import lombok.Data;
  * @author Jiazngxiaobai
  */
 @Data
-@Serialization
 public class UserMessageModel {
-    @ApiModelProperty(name = "user_name",value = "用户姓名")
+    @NotNull(message = "请填写姓名")
     private String username;
-    @ApiModelProperty(name = "phone",value = "手机号")
+    @NotNull(message = "请填写手机号码")
     private String phone;
-    @ApiModelProperty(name = "email",value = "邮箱")
+    @NotNull(message = "请填写邮箱")
     private String email;
-    @ApiModelProperty(name = "address",value = "地址")
+    @NotNull(message = "请填写地址")
     private String address;
-    @ApiModelProperty(name = "content",value = "留言内容")
+    @NotNull(message = "请填写留言内容")
     private String content;
 }
