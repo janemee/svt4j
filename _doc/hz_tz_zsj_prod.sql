@@ -11,7 +11,7 @@
  Target Server Version : 80031
  File Encoding         : 65001
 
- Date: 08/01/2025 01:31:06
+ Date: 26/02/2025 16:21:28
 */
 
 SET NAMES utf8mb4;
@@ -135,7 +135,7 @@ CREATE TABLE `bs_media_center` (
 -- Records of bs_media_center
 -- ----------------------------
 BEGIN;
-INSERT INTO `bs_media_center` VALUES (4, NULL, '111', '121312312', 'http://douguanjia.oss-cn-hangzhou.aliyuncs.com/apk/apk/989ff9fa-8a5f-4324-a648-35e8364d0a1a.jpg', 1, 'admins', '2025-01-03 22:59:21', 'admins', '2025-01-04 20:56:03', 0, 1);
+INSERT INTO `bs_media_center` VALUES (4, NULL, '111', '121312312', 'http://douguanjia.oss-cn-hangzhou.aliyuncs.com/apk/apk/989ff9fa-8a5f-4324-a648-35e8364d0a1a.jpg', 0, 'admins', '2025-01-03 22:59:21', 'admins', '2025-01-19 17:13:14', 0, 1);
 COMMIT;
 
 -- ----------------------------
@@ -157,13 +157,21 @@ CREATE TABLE `bs_message_board` (
   `del_flag` int DEFAULT '0' COMMENT '删除标识 0 未删除 1 已删除',
   `uuid` varchar(255) DEFAULT NULL COMMENT 'uuid',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='应用领域表';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='应用领域表';
 
 -- ----------------------------
 -- Records of bs_message_board
 -- ----------------------------
 BEGIN;
 INSERT INTO `bs_message_board` VALUES (1, '1', '1', '1', '11', '111', 4, '1', '2025-01-01 23:35:34', NULL, '2025-01-02 00:42:24', 0, NULL);
+INSERT INTO `bs_message_board` VALUES (3, NULL, NULL, NULL, NULL, NULL, 0, 'user', '2025-01-18 20:22:34', NULL, NULL, 0, NULL);
+INSERT INTO `bs_message_board` VALUES (4, NULL, NULL, '18712340001', NULL, NULL, 0, 'user', '2025-01-18 20:29:23', NULL, NULL, 0, NULL);
+INSERT INTO `bs_message_board` VALUES (5, NULL, NULL, '18712340001', NULL, NULL, 0, 'user', '2025-01-18 20:30:06', NULL, NULL, 0, NULL);
+INSERT INTO `bs_message_board` VALUES (6, '张三', '18712340001@163.com', '18712340001', '西湖区', '我想了解一下', 0, 'user', '2025-01-18 20:36:39', NULL, NULL, 0, NULL);
+INSERT INTO `bs_message_board` VALUES (7, NULL, '18712340001@163.com', '18712340001', '西湖区', '我想了解一下', 0, 'user', '2025-01-18 20:39:55', NULL, NULL, 0, NULL);
+INSERT INTO `bs_message_board` VALUES (8, '张三', NULL, '18712340001', '西湖区', '我想了解一下', 0, 'user', '2025-01-18 20:48:42', NULL, NULL, 0, NULL);
+INSERT INTO `bs_message_board` VALUES (9, '张三', '18712340001@163.com', '18712340001', '西湖区', '我想了解一下', 0, 'user', '2025-01-18 20:50:30', NULL, NULL, 0, NULL);
+INSERT INTO `bs_message_board` VALUES (10, '张三', '18712340001@163.com', '18712340001', '西湖区', '我想了解一下', 0, 'user', '2025-01-19 01:15:05', NULL, NULL, 0, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -873,12 +881,12 @@ CREATE TABLE `sys_conf` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `sys_conf` VALUES (1, NULL, '登录用户保存到cookie的时长', 'login_user_cookie_time', '2592000', 1, 1, '单位:秒  3600 * 24 * 30 (30天)', 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_conf` VALUES (3, NULL, '网站ICP备案', 'web_icp', '豫ICP备17004144号-1', 1, 1, '网站icp', 0, 0, NULL, 'system', NULL, '2017-04-24 15:50:05');
+INSERT INTO `sys_conf` VALUES (3, NULL, '网站ICP备案', 'web_icp', '浙ICP备2025147162', 1, 1, '网站icp', 0, 0, NULL, 'system', NULL, '2017-04-24 15:50:05');
 INSERT INTO `sys_conf` VALUES (4, NULL, '网站名称', 'web_name', '速腾注塑机', 1, 1, '网站名称', 0, 0, NULL, 'system', NULL, '2025-01-06 22:33:43');
 INSERT INTO `sys_conf` VALUES (40, NULL, '图片服务器地址', 'image_server_url', 'http://zjxls.oss-cn-zhangjiakou.aliyuncs.com', 1, 1, '图片服务器地址', 0, 0, NULL, NULL, NULL, '2019-04-10 09:49:25');
 INSERT INTO `sys_conf` VALUES (46, NULL, '后台管理地址', 'admin_server_url', 'http://mgrs.douguanjia666.com/s/s/main', 1, 1, '后台管理地址\r\nhttp://mgrs.douguanjia666.com/s/s/main', 0, 0, NULL, NULL, NULL, '2020-08-18 09:55:04');
 INSERT INTO `sys_conf` VALUES (53, NULL, '客户服务热线', 'cn_mobile', '13957621817', 1, 1, '客户服务热线', 0, 0, NULL, NULL, NULL, '2025-01-06 22:21:38');
-INSERT INTO `sys_conf` VALUES (57, NULL, '网站copyRight', 'copy_right', '© 2024-2028', 1, 1, '授权信息', 0, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_conf` VALUES (57, NULL, '网站copyRight', 'copy_right', '© 2025-01-17', 1, 1, '授权信息', 0, 0, NULL, NULL, NULL, NULL);
 INSERT INTO `sys_conf` VALUES (86, NULL, '静态资源服务器地址', 'static_server_url', 'http://localhost:9090/', 1, 1, '管理端静态资源服务器地址', 0, 0, 'system', 'system', '2018-12-29 05:53:15', '2019-12-16 16:51:26');
 INSERT INTO `sys_conf` VALUES (90, NULL, 'api服务器地址', 'web_server_url', 'http://10.0.0.23:8500', 1, 1, 'api接口服务器地址', 0, 0, NULL, NULL, '2019-01-15 09:59:13', '2019-11-11 10:04:13');
 INSERT INTO `sys_conf` VALUES (110, NULL, '客服微信二维码', 'customer_qrcode_img', 'http://sgds.oss-cn-shenzhen.aliyuncs.com/images/public/goods/2a55b24874d015a61284c1d7fc6f0c87_1.jpg', 4, 1, '客服微信二维码(请在功能管理-客服管理设置)', 0, 0, NULL, NULL, '2019-06-11 14:28:36', NULL);
@@ -1084,13 +1092,13 @@ CREATE TABLE `sys_menu` (
   KEY `del_flag` (`del_flag`) USING BTREE,
   KEY `parent_menu_id` (`parent_id`) USING BTREE,
   KEY `type` (`type`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=344 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin ROW_FORMAT=COMPACT COMMENT='系统菜单表 -- 公共表';
+) ENGINE=InnoDB AUTO_INCREMENT=345 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin ROW_FORMAT=COMPACT COMMENT='系统菜单表 -- 公共表';
 
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_menu` VALUES (1, NULL, 0, '根节点', '业务管理', '/s/config/list4', 0, 1, 'fa fa-circle-o', 1, 0, 0, '', 1, 0, 0, '', '', '2018-10-12 09:57:08', '2025-01-06 22:44:08');
+INSERT INTO `sys_menu` VALUES (1, NULL, 0, '根节点', '业务管理', '/s/config/list4', 0, 1, 'fa fa-circle-o', 1, 0, 0, '', 1, 0, 0, '', '', '2018-10-12 09:57:08', '2025-01-12 14:47:07');
 INSERT INTO `sys_menu` VALUES (4, NULL, 0, '根节点', '系统管理', '/s/config/list4', 0, 1, 'fa fa-circle-o', 4, 0, 0, '', 1, 0, 0, '', '', '2018-10-12 09:57:08', '2025-01-01 23:33:11');
 INSERT INTO `sys_menu` VALUES (5, NULL, 4, '系统管理', '权限管理', '', 0, 2, 'fa fa-circle-o', 1, 0, 0, '', 1, 0, 0, '', '', '2018-10-12 09:57:08', '2025-01-01 23:33:11');
 INSERT INTO `sys_menu` VALUES (6, NULL, 5, '权限管理', '代理商管理', '/s/admin/list', 0, 3, 'fa fa-circle-o', 0, 0, 0, '', 1, 0, 0, '', '', '2018-10-12 09:57:08', '2025-01-01 23:33:11');
@@ -1308,6 +1316,7 @@ INSERT INTO `sys_menu` VALUES (340, NULL, 1, '业务管理', '媒体中心管理
 INSERT INTO `sys_menu` VALUES (341, NULL, 1, '业务管理', '关于企业', '/s/config/abroadInfo', 0, 2, 'fa fa-circle-o', 6, 0, 0, '关于企业模块', 0, 0, 0, NULL, NULL, '2025-01-06 22:41:59', '2025-01-07 01:07:04');
 INSERT INTO `sys_menu` VALUES (342, NULL, 0, '根节点', '基础配置管理', '/s/config/info', 0, 1, 'fa fa-circle-o', 0, 0, 0, '基础配置管理', 0, 1, 0, NULL, NULL, '2025-01-06 22:42:54', '2025-01-07 01:06:28');
 INSERT INTO `sys_menu` VALUES (343, NULL, 1, '业务管理', '基础配置管理', '/s/config/index', 0, 2, 'fa fa-circle-o', 7, 0, 0, '基础配置管理', 0, 0, 0, NULL, NULL, '2025-01-06 22:44:08', NULL);
+INSERT INTO `sys_menu` VALUES (344, NULL, 1, '业务管理', '门户图片资源管理', '/s/config/banner', 0, 2, 'fa fa-circle-o', 0, 0, 0, '门户图片资源管理', 0, 0, 0, NULL, NULL, '2025-01-12 14:47:07', NULL);
 COMMIT;
 
 -- ----------------------------
@@ -6724,7 +6733,7 @@ CREATE TABLE `sys_role` (
 -- Records of sys_role
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_role` VALUES (1, '1', '系统管理员', '系统管理员', 0, '1,36,37,40,328,304,306,307,308,309,329,335,337,338,339,340,341,343,4,5,6,322,323,324,325,326,327,331,7,8,317,9,10,143,144,', 0, 0, '系统管理员', NULL, '2018-10-19 11:50:56', '2025-01-06 22:54:06');
+INSERT INTO `sys_role` VALUES (1, '1', '系统管理员', '系统管理员', 0, '1,36,37,40,328,304,306,307,308,309,329,335,337,338,339,340,341,343,344,4,5,6,322,323,324,325,326,327,331,7,8,317,9,10,143,144,', 0, 0, '系统管理员', NULL, '2018-10-19 11:50:56', '2025-01-12 14:47:28');
 INSERT INTO `sys_role` VALUES (15, NULL, '二级代理商', '', 0, '1,31,32,122,175,176,177,311,312,313,314,36,37,40,329,306,307,51,52,193,194,195,196,197,53,198,199,200,97,201,202,203,294,295,296,297,298,299,301,302,303,305,310,315,316,4,5,6,327,', 0, 0, 'admins', 'admins', '2019-04-28 19:55:51', '2020-09-07 11:23:26');
 INSERT INTO `sys_role` VALUES (16, NULL, '一级代理商', '', 0, '1,31,32,122,175,176,177,311,312,313,314,36,37,40,329,306,307,51,52,193,194,195,196,197,53,198,199,200,97,201,202,203,294,295,296,297,298,299,301,302,303,305,310,315,316,4,5,6,322,323,324,325,326,317,', 0, 0, 'admins', 'admins', '2019-05-08 19:18:55', '2020-09-07 11:24:30');
 COMMIT;
@@ -6755,7 +6764,7 @@ CREATE TABLE `sys_system_log` (
   `create_time` datetime DEFAULT NULL COMMENT '更新时间',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=36028 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin ROW_FORMAT=COMPACT COMMENT='系统访问日志表 -- 记录每一次请求的详情';
+) ENGINE=InnoDB AUTO_INCREMENT=36104 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin ROW_FORMAT=COMPACT COMMENT='系统访问日志表 -- 记录每一次请求的详情';
 
 -- ----------------------------
 -- Records of sys_system_log
@@ -42788,6 +42797,82 @@ INSERT INTO `sys_system_log` VALUES (36024, NULL, NULL, NULL, NULL, '0:0:0:0:0:0
 INSERT INTO `sys_system_log` VALUES (36025, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'POST', NULL, '/s/config/json/updateAbroadInfo', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-07 01:21:41', NULL);
 INSERT INTO `sys_system_log` VALUES (36026, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/bsMediaCenter/list', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-07 01:21:44', NULL);
 INSERT INTO `sys_system_log` VALUES (36027, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'POST', NULL, '/s/bsMediaCenter/json/list', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-07 01:21:44', NULL);
+INSERT INTO `sys_system_log` VALUES (36028, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/login;JSESSIONID=93f5418e-4c4f-4c94-aff7-11eba252aed7', NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, '2025-01-12 14:44:37', NULL);
+INSERT INTO `sys_system_log` VALUES (36029, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'POST', NULL, '/s/doLogin', NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, '2025-01-12 14:44:39', NULL);
+INSERT INTO `sys_system_log` VALUES (36030, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/s/main', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:44:39', NULL);
+INSERT INTO `sys_system_log` VALUES (36031, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/content', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:44:39', NULL);
+INSERT INTO `sys_system_log` VALUES (36032, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/config/abroadInfo', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:44:42', NULL);
+INSERT INTO `sys_system_log` VALUES (36033, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/getVerMenuTreeByHorId', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:44:52', NULL);
+INSERT INTO `sys_system_log` VALUES (36034, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/getVerMenuTreeByHorId', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:44:53', NULL);
+INSERT INTO `sys_system_log` VALUES (36035, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/bsNotice/list', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:44:56', NULL);
+INSERT INTO `sys_system_log` VALUES (36036, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'POST', NULL, '/s/bsNotice/json/list', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:44:56', NULL);
+INSERT INTO `sys_system_log` VALUES (36037, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/getVerMenuTreeByHorId', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:44:59', NULL);
+INSERT INTO `sys_system_log` VALUES (36038, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/getVerMenuTreeByHorId', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:45:38', NULL);
+INSERT INTO `sys_system_log` VALUES (36039, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/getVerMenuTreeByHorId', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:45:54', NULL);
+INSERT INTO `sys_system_log` VALUES (36040, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/menu/list', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:45:58', NULL);
+INSERT INTO `sys_system_log` VALUES (36041, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/menu/add', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:46:05', NULL);
+INSERT INTO `sys_system_log` VALUES (36042, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'POST', NULL, '/s/menu/json/saveOrUpdate', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:47:07', NULL);
+INSERT INTO `sys_system_log` VALUES (36043, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/s/main', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:47:09', NULL);
+INSERT INTO `sys_system_log` VALUES (36044, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/content', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:47:09', NULL);
+INSERT INTO `sys_system_log` VALUES (36045, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/getVerMenuTreeByHorId', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:47:14', NULL);
+INSERT INTO `sys_system_log` VALUES (36046, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/role/list', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:47:16', NULL);
+INSERT INTO `sys_system_log` VALUES (36047, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'POST', NULL, '/s/role/json/list', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:47:17', NULL);
+INSERT INTO `sys_system_log` VALUES (36048, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/role/authorize', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:47:20', NULL);
+INSERT INTO `sys_system_log` VALUES (36049, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'POST', NULL, '/s/role/json/doAuthorize', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:47:28', NULL);
+INSERT INTO `sys_system_log` VALUES (36050, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'POST', NULL, '/s/role/json/refreshRights', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:47:28', NULL);
+INSERT INTO `sys_system_log` VALUES (36051, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/role/authorize', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:47:28', NULL);
+INSERT INTO `sys_system_log` VALUES (36052, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'POST', NULL, '/s/role/json/refreshRights', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:47:28', NULL);
+INSERT INTO `sys_system_log` VALUES (36053, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'POST', NULL, '/s/role/json/refreshRights', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:47:30', NULL);
+INSERT INTO `sys_system_log` VALUES (36054, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/s/main', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:47:31', NULL);
+INSERT INTO `sys_system_log` VALUES (36055, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/content', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:47:31', NULL);
+INSERT INTO `sys_system_log` VALUES (36056, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/s/main', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:47:33', NULL);
+INSERT INTO `sys_system_log` VALUES (36057, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/content', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:47:33', NULL);
+INSERT INTO `sys_system_log` VALUES (36058, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/s/main', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:47:33', NULL);
+INSERT INTO `sys_system_log` VALUES (36059, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/content', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:47:34', NULL);
+INSERT INTO `sys_system_log` VALUES (36060, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/s/main', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:47:34', NULL);
+INSERT INTO `sys_system_log` VALUES (36061, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/content', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:47:34', NULL);
+INSERT INTO `sys_system_log` VALUES (36062, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/config/index', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 14:47:35', NULL);
+INSERT INTO `sys_system_log` VALUES (36063, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/login;JSESSIONID=44723423-d0a1-4744-bbd1-49112724e495', NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, '2025-01-12 15:53:23', NULL);
+INSERT INTO `sys_system_log` VALUES (36064, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'POST', NULL, '/s/doLogin', NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, '2025-01-12 15:53:24', NULL);
+INSERT INTO `sys_system_log` VALUES (36065, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/s/main', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 15:53:24', NULL);
+INSERT INTO `sys_system_log` VALUES (36066, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/content', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 15:53:24', NULL);
+INSERT INTO `sys_system_log` VALUES (36067, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/config/index', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 15:53:26', NULL);
+INSERT INTO `sys_system_log` VALUES (36068, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/config/banner', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 15:53:32', NULL);
+INSERT INTO `sys_system_log` VALUES (36069, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/config/banner', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 15:54:02', NULL);
+INSERT INTO `sys_system_log` VALUES (36070, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/login;JSESSIONID=330fc969-1e3a-45f6-a74b-2dc424871915', NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, '2025-01-12 15:58:48', NULL);
+INSERT INTO `sys_system_log` VALUES (36071, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'POST', NULL, '/s/doLogin', NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, '2025-01-12 15:58:49', NULL);
+INSERT INTO `sys_system_log` VALUES (36072, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/s/main', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 15:58:49', NULL);
+INSERT INTO `sys_system_log` VALUES (36073, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/content', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 15:58:50', NULL);
+INSERT INTO `sys_system_log` VALUES (36074, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/config/banner', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-12 15:58:53', NULL);
+INSERT INTO `sys_system_log` VALUES (36075, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/login;JSESSIONID=13b0f6ab-4eac-40d5-b637-d622288b390f', NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, '2025-01-18 13:55:38', NULL);
+INSERT INTO `sys_system_log` VALUES (36076, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'POST', NULL, '/s/doLogin', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-18 13:55:44', NULL);
+INSERT INTO `sys_system_log` VALUES (36077, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/s/main', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-18 13:55:44', NULL);
+INSERT INTO `sys_system_log` VALUES (36078, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/content', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-18 13:55:45', NULL);
+INSERT INTO `sys_system_log` VALUES (36079, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/getVerMenuTreeByHorId', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-18 13:55:48', NULL);
+INSERT INTO `sys_system_log` VALUES (36080, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/config/list', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-18 13:55:50', NULL);
+INSERT INTO `sys_system_log` VALUES (36081, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'POST', NULL, '/s/config/json/list', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-18 13:55:50', NULL);
+INSERT INTO `sys_system_log` VALUES (36082, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/getVerMenuTreeByHorId', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-18 13:55:55', NULL);
+INSERT INTO `sys_system_log` VALUES (36083, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/config/index', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-18 13:55:56', NULL);
+INSERT INTO `sys_system_log` VALUES (36084, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'POST', NULL, '/s/config/json/updateInfo', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-18 13:58:26', NULL);
+INSERT INTO `sys_system_log` VALUES (36085, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/config/abroadInfo', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-18 13:58:44', NULL);
+INSERT INTO `sys_system_log` VALUES (36086, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/bsMessageBoard/list', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-18 14:01:50', NULL);
+INSERT INTO `sys_system_log` VALUES (36087, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'POST', NULL, '/s/bsMessageBoard/json/list', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-18 14:01:50', NULL);
+INSERT INTO `sys_system_log` VALUES (36088, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/bsNotice/list', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-18 14:01:52', NULL);
+INSERT INTO `sys_system_log` VALUES (36089, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'POST', NULL, '/s/bsNotice/json/list', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-18 14:01:52', NULL);
+INSERT INTO `sys_system_log` VALUES (36090, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/bsApplicationArea/list', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-18 14:01:55', NULL);
+INSERT INTO `sys_system_log` VALUES (36091, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'POST', NULL, '/s/bsApplicationArea/json/list', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-18 14:01:55', NULL);
+INSERT INTO `sys_system_log` VALUES (36092, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/bsProduct/list', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-18 14:01:57', NULL);
+INSERT INTO `sys_system_log` VALUES (36093, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'POST', NULL, '/s/bsProduct/json/list', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-18 14:01:57', NULL);
+INSERT INTO `sys_system_log` VALUES (36094, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/config/banner', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-18 14:02:00', NULL);
+INSERT INTO `sys_system_log` VALUES (36095, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/login;JSESSIONID=b4556aa7-6f23-42bf-b288-82ff292d6eac', NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, '2025-01-19 17:12:55', NULL);
+INSERT INTO `sys_system_log` VALUES (36096, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/login;JSESSIONID=b4556aa7-6f23-42bf-b288-82ff292d6eac', NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, '2025-01-19 17:12:55', NULL);
+INSERT INTO `sys_system_log` VALUES (36097, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'POST', NULL, '/s/doLogin', NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, '2025-01-19 17:12:57', NULL);
+INSERT INTO `sys_system_log` VALUES (36098, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/s/main', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-19 17:12:57', NULL);
+INSERT INTO `sys_system_log` VALUES (36099, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/content', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-19 17:12:58', NULL);
+INSERT INTO `sys_system_log` VALUES (36100, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/bsMediaCenter/list', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-19 17:13:03', NULL);
+INSERT INTO `sys_system_log` VALUES (36101, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'POST', NULL, '/s/bsMediaCenter/json/list', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-19 17:13:04', NULL);
+INSERT INTO `sys_system_log` VALUES (36102, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'GET', NULL, '/s/bsMediaCenter/json/startUp', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-19 17:13:14', NULL);
+INSERT INTO `sys_system_log` VALUES (36103, NULL, NULL, NULL, NULL, '0:0:0:0:0:0:0:1', 'POST', NULL, '/s/bsMediaCenter/json/list', NULL, NULL, NULL, NULL, NULL, 0, 0, 'admins', NULL, '2025-01-19 17:13:14', NULL);
 COMMIT;
 
 -- ----------------------------
