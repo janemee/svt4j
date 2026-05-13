@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "skills": {
+    "dst-business-expert": {
+      "source": "git@gitlab.dstcar.com:java/ai/ai-market.git",
+      "sourceType": "git",
+      "skillPath": "skills/知识库/dst-business-expert/SKILL.md",
+      "computedHash": "09982b52f10b3e67264d96ff3c9379a73d35a42503f1db94d1a83f38cb79489a"
+    },
+    "dst-design-guide": {
+      "source": "git@gitlab.dstcar.com:java/ai/ai-market.git",
+      "sourceType": "git",
+      "skillPath": "skills/后端开发/dst-design-guide/SKILL.md",
+      "computedHash": "b57a9d0fc7aa5e0d5738702cf2056a13fcbb3c0574faed6e3511b1e851aa5012"
+    },
+    "dst-domain-capability-analysis": {
+      "source": "git@gitlab.dstcar.com:java/ai/ai-market.git",
+      "sourceType": "git",
+      "skillPath": "skills/知识库/dst-domain-capability-analysis/SKILL.md",
+      "computedHash": "8533cb4109774ef5d4c8fa8de9c0dbf48c67489e4f4133e64a1326401005ebcf"
+    },
+    "dst-domain-knowledge-detail": {
+      "source": "git@gitlab.dstcar.com:java/ai/ai-market.git",
+      "sourceType": "git",
+      "skillPath": "skills/知识库/dst-domain-knowledge-detail/SKILL.md",
+      "computedHash": "ac99d6098706c55c7f5a405d22195eb7fc6199a28cd39a8d43f91f3bbd366a55"
+    },
+    "feign-assistant": {
+      "source": "git@gitlab.dstcar.com:java/ai/ai-market.git",
+      "sourceType": "git",
+      "skillPath": "skills/后端开发/feign-assistant/SKILL.md",
+      "computedHash": "2370bb0594c8f0b3d41633f98fb8019f1943df89a737bb09e5a963dded786351"
+    },
+    "prd-to-design": {
+      "source": "git@gitlab.dstcar.com:java/ai/ai-market.git",
+      "sourceType": "git",
+      "skillPath": "skills/后端开发/prd-to-design/SKILL.md",
+      "computedHash": "d8cb03fe4c1cee899357af6d9881c88ac86040f78deb20379051cdeea4c13f05"
+    }
+  }
+}

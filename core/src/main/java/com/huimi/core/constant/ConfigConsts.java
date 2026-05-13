@@ -1,7 +1,9 @@
 package com.huimi.core.constant;
 
 /**
- * 系统常量
+ * 系统配置常量接口
+ * 定义了系统配置项的key值，这些配置通常存储在数据库或Redis中
+ * 注意：当前OSS配置实际上是硬编码在OSSClientUtils中的，并未使用这些常量
  *
  * @author Vector
  * @create 2017-06-12 15:06
@@ -19,10 +21,15 @@ public interface ConfigConsts {
     String SMS_OPEN = "sms_open";
     String SMS_APIKEY = "sms_apikey";
     String PC_SERVER_URL = "pc_server_url";
+    /** 阿里云OSS Endpoint（未使用，配置硬编码在OSSClientUtils中） */
     String OSS_ENDPOINT = "oss_endpoint";
+    /** 阿里云OSS Bucket名称（未使用，配置硬编码在OSSClientUtils中） */
     String OSS_BUCKET_NAME = "oss_bucket_name";
+    /** 阿里云OSS AccessKey Secret（未使用，配置硬编码在OSSClientUtils中） */
     String OSS_ACCESSKEY_SECRET = "oss_accesskey_secret";
+    /** 阿里云OSS AccessKey ID（未使用，配置硬编码在OSSClientUtils中） */
     String OSS_ACCESSKEY_ID = "oss_accesskey_id";
+    /** 图片服务器地址 */
     String IMAGE_SERVER_URL = "image_server_url";
     String COPY_RIGHT = "copy_right";
     String APP_SERVER_URL = "app_server_url";
