@@ -1,44 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="10 seconds">
-    <!--<include resource="org/springframework/boot/logging/logback/base.xml"/>-->
+    <!-- 引入 Spring Boot 默认配置 -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
     <contextName>logback</contextName>
-    <!--日志路径-->
+
+    <!-- 日志路径 -->
     <property name="log.path" value="/Users/kongyou/home/logs/admin"/>
-    <!--日志文件名前缀-->
     <property name="log.info" value="/info"/>
-    <!--日志格式-->
-    <property name="log.pattern"
-              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) %cyan(%-30.30logger{29} :) - %msg%n"/>
 
-    <!--控制台日志-->
+    <!-- 使用 Spring Boot 的彩色日志格式 -->
+    <property name="CONSOLE_LOG_PATTERN"
+              value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+
+    <!-- 文件日志格式 -->
+    <property name="FILE_LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
+
+    <!-- 控制台输出 - 使用 Spring Boot 提供的 -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-
         <encoder>
-            <pattern>${log.pattern}</pattern>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
         </encoder>
     </appender>
 
-    <!--info日志-->
+    <!-- Info日志文件 -->
     <appender name="fileInfoLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <!--每天分割日志-->
         <prudent>true</prudent>
-        <!--滚动策略-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!--路径-->
             <fileNamePattern>${log.path}${log.info}-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
         </rollingPolicy>
-        <!--日志格式-->
-        <layout class="ch.qos.logback.classic.PatternLayout">
-            <pattern>${log.pattern}</pattern>
-        </layout>
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
     </appender>
 
-    <!--选择输出策略-->
+    <!-- 项目日志 -->
+    <logger name="com.huimi.core" level="DEBUG"/>
+    <logger name="com.huimi.admin" level="DEBUG"/>
+
+    <!-- 减少第三方库的噪音 -->
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="org.apache" level="WARN"/>
+    <logger name="org.mybatis" level="WARN"/>
+    <logger name="com.alibaba" level="WARN"/>
+    <logger name="redis.clients" level="WARN"/>
+    <logger name="io.lettuce" level="WARN"/>
+    <logger name="io.netty" level="WARN"/>
+    <logger name="org.quartz" level="WARN"/>
+    <logger name="org.apache.shiro" level="WARN"/>
+
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="fileInfoLog"/>
     </root>
-    <logger name="org.springframework.boot" level="debug"/>
-    <logger name="com.huimi.core" level="debug"/>
-    <logger name="com.huimi.admin" level="debug"/>
 </configuration>

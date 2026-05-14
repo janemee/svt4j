@@ -1,12 +1,17 @@
 server:
   port: 9050
-endpoints:
-  restart:
-    enabled: true
-  shutdown:
-    enabled: true
-  health:
-    sensitive: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: restart,shutdown,health
+  endpoint:
+    restart:
+      enabled: true
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
 spring:
   application:
     name: nettySocket
@@ -19,7 +24,7 @@ spring:
   datasource:
     username: root
     password: root
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://10.0.0.199:3306/small_video_tool?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
 #    url: jdbc:mysql://127.0.0.1:3306/small_video_tool?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
     dbcp2:
@@ -33,7 +38,7 @@ spring:
   ######################### freemarker
   freemarker:
     check-template-location: false
-  http:
+  servlet:
     multipart:
       max-file-size: 100MB #限制默认文件上传大小
       max-request-size: 100MB #限制默认文件上传大小
@@ -48,17 +53,19 @@ spring:
     port: 6379
     password: root
     timeout: 2000
-    pool:
-      max-active: 200
-      max-wait: 5
-      max-idle: 20
-      min-idle: 10
+    lettuce:
+      pool:
+        max-active: 200
+        max-wait: 5ms
+        max-idle: 20
+        min-idle: 10
 #------------------------ redis end
 
 ######################### 日志
 logging:
   config: classpath:config/logback-spring-test.xml
-  level: debug
+  level:
+    root: debug
 #------------------------ 日志end
 
 ######################## mapper插件

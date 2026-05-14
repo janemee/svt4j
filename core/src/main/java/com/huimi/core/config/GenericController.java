@@ -4,7 +4,7 @@ import com.huimi.core.exception.BussinessException;
 import com.huimi.common.baseMapper.GenericPo;
 import com.huimi.common.entity.ResultEntity;
 import com.huimi.common.utils.LogUtil;
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -130,7 +130,7 @@ public class GenericController<PK, PO extends GenericPo<PK>> {
                 resultEntity.setCode(ResultEntity.PAY_PASSWOR_NOT_SET);
             }
             resultEntity.setMsg(e.getMessage());
-        } else if (e instanceof MySQLIntegrityConstraintViolationException) {
+        } else if (e instanceof SQLIntegrityConstraintViolationException) {
             log.error(e.getMessage());
         } else {
             e.printStackTrace();

@@ -112,14 +112,6 @@ public class ShiroConfig {
     }
 
     /**
-     * 继承自AuthorizingRealm的自定义Realm,即指定Shiro验证用户登录的类为自定义的AdminRealm.java
-     */
-    @Bean
-    public AdminRealm adminRealm() {
-        return new AdminRealm();
-    }
-
-    /**
      * Shiro安全管理器
      * Shiro默认会使用Servlet容器的Session,可通过sessionMode属性来指定使用Shiro原生Session
      * 即<property name="sessionMode" value="native"/>,详细说明见官方文档

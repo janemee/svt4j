@@ -24,7 +24,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
 /**
  * Created by dqw on 2015/11/3.
  */
-@Configuration
+@Component
 public class AdminRealm extends AuthorizingRealm {
 
     protected final Logger L = Logger.getLogger(AdminRealm.class);

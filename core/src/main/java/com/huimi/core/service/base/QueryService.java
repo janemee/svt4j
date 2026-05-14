@@ -238,7 +238,7 @@ public interface QueryService<PK, PO extends GenericPo<PK>> {
                 dtGrid.setPageSize(1000000);
                 dtGrid = getDtGridList(dtGrid, g);
                 String dataJsonStr = JSON.toJSONString(dtGrid.getExhibitDatas());
-                List<Map<String, Object>> exportDatas = mapper.readValue(dataJsonStr, new TypeReference<List<HashMap<String, Object>>>() {
+                List<Map<String, Object>> exportDatas = mapper.readValue(dataJsonStr, new TypeReference<List<Map<String, Object>>>() {
                 });
                 dtGrid.setExportDatas(exportDatas);
             }
@@ -260,7 +260,7 @@ public interface QueryService<PK, PO extends GenericPo<PK>> {
             dtGrid.setPageSize(1000000);
             dtGrid = getDtGridList(dtGrid, g);
             String dataJsonStr = JSON.toJSONString(dtGrid.getExhibitDatas());
-            List<Map<String, Object>> exportDatas = mapper.readValue(dataJsonStr, new TypeReference<List<HashMap<String, Object>>>() {
+            List<Map<String, Object>> exportDatas = mapper.readValue(dataJsonStr, new TypeReference<List<Map<String, Object>>>() {
             });
             dtGrid.setExportDatas(exportDatas);
             return dtGrid;
@@ -284,7 +284,7 @@ public interface QueryService<PK, PO extends GenericPo<PK>> {
                 dtGrid.setPageSize(1000000);
                 dtGrid = getDtGridList(dtGrid);
                 String dataJsonStr = JSON.toJSONString(dtGrid.getExhibitDatas());
-                List<Map<String, Object>> exportDatas = mapper.readValue(dataJsonStr, new TypeReference<List<HashMap<String, Object>>>() {
+                List<Map<String, Object>> exportDatas = mapper.readValue(dataJsonStr, new TypeReference<List<Map<String, Object>>>() {
                 });
                 dtGrid.setExportDatas(exportDatas);
             }
@@ -308,7 +308,7 @@ public interface QueryService<PK, PO extends GenericPo<PK>> {
                 dtGrid.setPageSize(1000000);
                 dtGrid = getDtGridList(dtGrid);
                 String dataJsonStr = JSON.toJSONString(dtGrid.getExhibitDatas());
-                List<Map<String, Object>> exportDatas = mapper.readValue(dataJsonStr, new TypeReference<List<HashMap<String, Object>>>() {
+                List<Map<String, Object>> exportDatas = mapper.readValue(dataJsonStr, new TypeReference<List<Map<String, Object>>>() {
                 });
                 dtGrid.setExportDatas(exportDatas);
             }

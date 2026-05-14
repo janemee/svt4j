@@ -14,7 +14,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.format.datetime.DateFormatter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import tk.mybatis.spring.annotation.MapperScan;
 
 /**
@@ -32,7 +32,7 @@ import tk.mybatis.spring.annotation.MapperScan;
         "com.huimi.admin",
         "com.huimi.core",
 })
-public class AdminApplication extends WebMvcConfigurerAdapter {
+public class AdminApplication implements WebMvcConfigurer {
 
     public static void main(String[] args) {
         SpringApplication.run(AdminApplication.class, args);

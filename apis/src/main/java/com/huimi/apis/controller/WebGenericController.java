@@ -5,7 +5,7 @@ import com.huimi.common.baseMapper.GenericPo;
 import com.huimi.common.entity.ResultEntity;
 import com.huimi.common.utils.LogUtil;
 import com.huimi.core.exception.BussinessException;
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -144,7 +144,7 @@ public class WebGenericController<PK, PO extends GenericPo<PK>> {
                 resultEntity.setMsg(BussinessException.Code.E203.msg);
             }
             resultEntity.setMsg(e.getMessage());
-        } else if (e instanceof MySQLIntegrityConstraintViolationException) {
+        } else if (e instanceof SQLIntegrityConstraintViolationException) {
             log.error(e.getMessage());
             e.printStackTrace();
         } else {

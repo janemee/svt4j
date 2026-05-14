@@ -1,3 +1,5 @@
 spring:
+  application:
+    name: svt4j-nettysocket
   profiles:
     active: dev

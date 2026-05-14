@@ -1,0 +1,9 @@
+${AnsiColor.BRIGHT_MAGENTA}
+    ___    ____  ____  _____
+   /   |  / __ \/ __ \/ ___/
+  / /| | / /_/ / /_/ /\__ \
+ / ___ |/ ____/ ____/___/ /
+/_/  |_/_/   /_/    /____/
+${AnsiColor.BRIGHT_YELLOW}
+:: Spring Boot ${spring-boot.version} :: APIs Service ::
+${AnsiColor.DEFAULT}

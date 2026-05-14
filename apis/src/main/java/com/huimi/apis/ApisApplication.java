@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import tk.mybatis.spring.annotation.MapperScan;
 
@@ -28,7 +28,7 @@ import tk.mybatis.spring.annotation.MapperScan;
         "com.huimi.apis",
         "com.huimi.core",})
 @EnableSwagger2
-public class ApisApplication extends WebMvcConfigurerAdapter {
+public class ApisApplication implements WebMvcConfigurer {
     public static void main(String[] args) {
         SpringApplication.run(ApisApplication.class, args);
     }

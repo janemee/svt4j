@@ -3,13 +3,14 @@ package com.huimi.admin.config.shiro;
 import org.apache.shiro.session.mgt.SessionValidationScheduler;
 import org.apache.shiro.session.mgt.ValidatingSessionManager;
 import org.apache.shiro.session.mgt.quartz.QuartzSessionValidationJob;
-import org.quartz.JobDetail;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.SimpleTrigger;
+import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
+import static org.quartz.TriggerBuilder.newTrigger;
 
 /**
  * Created by dqw on 2016/5/26.
@@ -17,6 +18,7 @@ import org.slf4j.LoggerFactory;
 public class QuartzSessionValidationSchedulerAdmin implements SessionValidationScheduler {
     public static final long DEFAULT_SESSION_VALIDATION_INTERVAL = 3600000L;
     private static final String JOB_NAME = "SessionValidationJobAdmin";
+    private static final String JOB_GROUP = "DEFAULT";
     private static final Logger log = LoggerFactory.getLogger(QuartzSessionValidationSchedulerAdmin.class);
     private Scheduler scheduler;
     private boolean schedulerImplicitlyCreated = false;
@@ -62,11 +64,20 @@ public class QuartzSessionValidationSchedulerAdmin implements SessionValidationS
         }
 
         try {
-            SimpleTrigger e = new SimpleTrigger(this.getClass().getName(), "DEFAULT", SimpleTrigger.REPEAT_INDEFINITELY, this.sessionValidationInterval);
-            JobDetail detail = new JobDetail(JOB_NAME, "DEFAULT", QuartzSessionValidationJob.class);
+            JobDetail detail = newJob(QuartzSessionValidationJob.class)
+                    .withIdentity(JOB_NAME, JOB_GROUP)
+                    .build();
             detail.getJobDataMap().put("sessionManager", this.sessionManager);
+
+            SimpleTrigger trigger = newTrigger()
+                    .withIdentity(this.getClass().getName(), JOB_GROUP)
+                    .withSchedule(simpleSchedule()
+                            .withIntervalInMilliseconds(this.sessionValidationInterval)
+                            .repeatForever())
+                    .build();
+
             Scheduler scheduler = this.getScheduler();
-            scheduler.scheduleJob(detail, e);
+            scheduler.scheduleJob(detail, trigger);
             if(this.schedulerImplicitlyCreated) {
                 scheduler.start();
                 if(log.isDebugEnabled()) {
@@ -96,7 +107,7 @@ public class QuartzSessionValidationSchedulerAdmin implements SessionValidationS
             scheduler = this.getScheduler();
             if(scheduler == null) {
                 if(log.isWarnEnabled()) {
-                    log.warn("getScheduler() method returned a null Quartz scheduler, which is unexpected.  Please check your configuration and/or implementation.  Returning quietly since there is no validation job to remove (scheduler does not exist).");
+                    log.warn("getScheduler() method returned a null Quartz scheduler, which is unexpected.  Please check your configuration and/or implementation.  Returning quietly since there's no validation job to remove (scheduler does not exist).");
                 }
 
                 return;
@@ -110,7 +121,7 @@ public class QuartzSessionValidationSchedulerAdmin implements SessionValidationS
         }
 
         try {
-            scheduler.unscheduleJob(JOB_NAME, "DEFAULT");
+            scheduler.unscheduleJob(TriggerKey.triggerKey(JOB_NAME, JOB_GROUP));
             if(log.isDebugEnabled()) {
                 log.debug("Quartz session validation job stopped successfully.");
             }

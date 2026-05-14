@@ -2,9 +2,6 @@ package com.huimi.core.task;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.validation.constraints.NotNull;
-
 /**
  * 任务返回信息类
  */

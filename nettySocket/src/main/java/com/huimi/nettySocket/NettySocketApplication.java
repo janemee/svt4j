@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import tk.mybatis.spring.annotation.MapperScan;
 
@@ -26,7 +26,7 @@ import tk.mybatis.spring.annotation.MapperScan;
         "com.huimi.common.utils",
         "com.huimi.nettySocket",
         "com.huimi.core",})
-public class NettySocketApplication extends WebMvcConfigurerAdapter {
+public class NettySocketApplication implements WebMvcConfigurer {
     public static void main(String[] args) {
         SpringApplication.run(NettySocketApplication.class, args);
     }
