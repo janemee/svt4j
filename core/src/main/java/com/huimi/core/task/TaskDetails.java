@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.huimi.common.baseMapper.GenericPo;
 import com.huimi.core.constant.EnumConstants;
 import io.swagger.annotations.ApiModel;
-import io.swagger.models.auth.In;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

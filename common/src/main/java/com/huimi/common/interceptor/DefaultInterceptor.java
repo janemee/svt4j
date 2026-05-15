@@ -39,8 +39,13 @@ public class DefaultInterceptor implements HandlerInterceptor {
 
     private void debugLog(HttpServletRequest request, Object handler) {
         try {
-            Class clazz = ((HandlerMethod) handler).getBean().getClass();
-            Method m = ((HandlerMethod) handler).getMethod();
+            // 静态资源请求（如webjars、CSS、JS）使用ResourceHttpRequestHandler，不是HandlerMethod
+            if (!(handler instanceof HandlerMethod)) {
+                return;
+            }
+            HandlerMethod handlerMethod = (HandlerMethod) handler;
+            Class clazz = handlerMethod.getBean().getClass();
+            Method m = handlerMethod.getMethod();
             StackTraceElement traces =
                     new StackTraceElement(clazz.getName(), m.getName(), clazz.getName(), 1);
             StringBuilder sb = new StringBuilder();

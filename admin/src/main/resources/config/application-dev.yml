@@ -20,11 +20,11 @@ spring:
     static-locations: classpath:/webapp/template/
     #################### DataSource Start ####################
   datasource:
-    username: root
-    password: aa123123
+    username: spaas
+    password: WtAjgIx6L5zFhPfiswuG
     driver-class-name: com.mysql.cj.jdbc.Driver
 #    url: jdbc:mysql://10.0.0.199:3306/small_video_tool?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
-    url: jdbc:mysql://127.0.0.1:3306/small_video_tool?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    url: jdbc:mysql://172.16.8.115:32232/small_video_tool?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
     dbcp2:
       # 连接池中的最大空闲连接
       max-idle: 100
@@ -43,11 +43,13 @@ spring:
   mvc:
     favicon:
       enabled: false
+    pathmatch:
+      matching-strategy: ant_path_matcher
   #------------------------ freemarker end
   ######################## redis
   redis:
-    database: 1
-    host: 127.0.0.1
+    database: 0
+    host: 172.16.8.34
     port: 6379
     password:
     timeout: 2000
