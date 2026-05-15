@@ -1,6 +1,6 @@
 package com.huimi.common.page;
 
-import io.swagger.annotations.ApiModelProperty;
+//import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.util.List;
@@ -14,15 +14,15 @@ import java.util.function.Consumer;
 @Data
 public class Pages<T> implements java.io.Serializable {
 
-    @ApiModelProperty(value = "当前第几页")
+//    @ApiModelProperty(value = "当前第几页")
     private int page; //当前第几页
-    @ApiModelProperty(value = "系着页最大条件")
+//    @ApiModelProperty(value = "系着页最大条件")
     private int size;//系着页最大条件
-    @ApiModelProperty(value = "分页列表")
+//    @ApiModelProperty(value = "分页列表")
     private List<T> rows;//分页列表
-    @ApiModelProperty(value = "记录总数")
+//    @ApiModelProperty(value = "记录总数")
     private long total;//记录总数
-    @ApiModelProperty(value = "总页数")
+//    @ApiModelProperty(value = "总页数")
     private long totalPage; //总页数
 
 

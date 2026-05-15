@@ -29,16 +29,16 @@ public class InitializationRunner implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        initRedisData();
+//        initRedisData();
     }
 
     /**
      * 初始化redis数据
      */
-    private void initRedisData() {
-        List<Conf> confList = confService.select(new Conf(model -> {
-            model.setState(Conf.STATE.ENABLED.code);
-        }));
-        confList.forEach(conf -> redisService.put(CacheID.CONFIG_PREFIX + conf.getNid(), conf.getValue()));
-    }
+//    private void initRedisData() {
+//        List<Conf> confList = confService.select(new Conf(model -> {
+//            model.setState(Conf.STATE.ENABLED.code);
+//        }));
+//        confList.forEach(conf -> redisService.put(CacheID.CONFIG_PREFIX + conf.getNid(), conf.getValue()));
+//    }
 }

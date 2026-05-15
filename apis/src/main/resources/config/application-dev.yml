@@ -44,6 +44,8 @@ spring:
   mvc:
     favicon:
       enabled: false
+    pathmatch:
+      matching-strategy: ant_path_matcher
   #------------------------ freemarker end
   ######################## redis
   redis:

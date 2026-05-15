@@ -2,7 +2,6 @@ package com.huimi.admin.config.shiro;
 
 import org.apache.shiro.session.mgt.SessionValidationScheduler;
 import org.apache.shiro.session.mgt.ValidatingSessionManager;
-import org.apache.shiro.session.mgt.quartz.QuartzSessionValidationJob;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
@@ -67,7 +66,7 @@ public class QuartzSessionValidationSchedulerAdmin implements SessionValidationS
             JobDetail detail = newJob(QuartzSessionValidationJob.class)
                     .withIdentity(JOB_NAME, JOB_GROUP)
                     .build();
-            detail.getJobDataMap().put("sessionManager", this.sessionManager);
+            detail.getJobDataMap().put(QuartzSessionValidationJob.SESSION_MANAGER_KEY, this.sessionManager);
 
             SimpleTrigger trigger = newTrigger()
                     .withIdentity(this.getClass().getName(), JOB_GROUP)
